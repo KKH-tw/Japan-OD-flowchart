@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本職業病（業務上疾病）完整程序流程圖</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --red: #c0392b;
+    --red-light: #f5e6e4;
+    --blue: #1a3a5c;
+    --blue-mid: #2660a4;
+    --blue-light: #e8f0f9;
+    --green: #1a5c3a;
+    --green-light: #e6f4ec;
+    --gold: #b8860b;
+    --gold-light: #fdf6e3;
+    --grey: #6b7280;
+    --grey-light: #f4f4f6;
+    --border: #d0d5dd;
+    --white: #fefefe;
+    --shadow: 0 2px 12px rgba(26,26,46,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: #f0ede8;
+    color: var(--ink);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--blue);
+    color: #fff;
+    padding: 36px 40px 28px;
+    border-bottom: 4px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 300px; height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 12px,
+      rgba(255,255,255,0.03) 12px,
+      rgba(255,255,255,0.03) 24px
+    );
+  }
+  header .flag { font-size: 28px; margin-bottom: 6px; }
+  header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  header p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+  }
+  header .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 2px;
+    margin-right: 8px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 36px 0 16px;
+  }
+  .section-label .num {
+    background: var(--blue);
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-label h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 3px;
+  }
+
+  /* ── LAW BOX ── */
+  .law-box {
+    background: var(--gold-light);
+    border: 1px solid #e6d68a;
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 12.5px;
+  }
+  .law-box .law-title {
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .law-box ul { list-style: none; padding: 0; }
+  .law-box ul li {
+    padding: 2px 0 2px 14px;
+    position: relative;
+    color: #5a4a00;
+  }
+  .law-box ul li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--gold);
+  }
+  .law-box a { color: var(--blue-mid); text-decoration: none; border-bottom: 1px dotted var(--blue-mid); }
+  .law-box a:hover { color: var(--red); }
+
+  /* ── FLOWCHART GENERAL ── */
+  .flow-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ── NODE CARDS ── */
+  .node {
+    width: 100%;
+    max-width: 620px;
+    border-radius: 6px;
+    padding: 16px 22px;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  .node .node-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .node .node-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .node .node-body {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .node .node-law {
+    margin-top: 8px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    opacity: 0.75;
+  }
+  .node .node-link {
+    margin-top: 6px;
+    font-size: 11px;
+  }
+  .node .node-link a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+    opacity: 0.8;
+  }
+  .node .node-link a:hover { opacity: 1; }
+
+  /* COLOURS */
+  .node-start { background: var(--ink); color: #fff; }
+  .node-start .node-tag { color: rgba(255,255,255,0.5); }
+
+  .node-blue { background: var(--blue-light); border: 1.5px solid #aac4e8; }
+  .node-blue .node-tag { color: var(--blue-mid); }
+  .node-blue .node-title { color: var(--blue); }
+
+  .node-green { background: var(--green-light); border: 1.5px solid #8ecfab; }
+  .node-green .node-tag { color: var(--green); }
+  .node-green .node-title { color: var(--green); }
+
+  .node-red { background: var(--red-light); border: 1.5px solid #e8b4ae; }
+  .node-red .node-tag { color: var(--red); }
+  .node-red .node-title { color: var(--red); }
+
+  .node-gold { background: var(--gold-light); border: 1.5px solid #e6cc6a; }
+  .node-gold .node-tag { color: var(--gold); }
+  .node-gold .node-title { color: var(--gold); }
+
+  .node-grey { background: var(--grey-light); border: 1.5px solid var(--border); }
+  .node-grey .node-tag { color: var(--grey); }
+  .node-grey .node-title { color: var(--ink); }
+
+  /* ── ARROWS ── */
+  .arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 4px 0;
+  }
+  .arrow-line {
+    width: 2px;
+    height: 22px;
+    background: var(--grey);
+  }
+  .arrow-head {
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid var(--grey);
+  }
+  .arrow-label {
+    font-size: 11px;
+    color: var(--grey);
+    font-family: 'IBM Plex Mono', monospace;
+    background: #f0ede8;
+    padding: 1px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin: 2px 0;
+  }
+  .arrow.red .arrow-line { background: var(--red); }
+  .arrow.red .arrow-head { border-top-color: var(--red); }
+  .arrow.red .arrow-label { color: var(--red); border-color: #e8b4ae; }
+  .arrow.green .arrow-line { background: var(--green); }
+  .arrow.green .arrow-head { border-top-color: var(--green); }
+
+  /* ── BRANCH ── */
+  .branch-wrap {
+    width: 100%;
+    max-width: 620px;
+    display: flex;
+    gap: 16px;
+    margin: 0;
+  }
+  .branch-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .branch-divider {
+    width: 1px;
+    background: var(--border);
+    flex-shrink: 0;
+    margin-top: 12px;
+  }
+
+  /* ── PRESUMPTION BOX ── */
+  .presumption-box {
+    background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  .presumption-box::before {
+    content: '⚖ 法律推定';
+    position: absolute;
+    top: -12px; left: 20px;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .presumption-box h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .presumption-box p { font-size: 12.5px; color: #5a4a00; margin-bottom: 6px; }
+  .presumption-box ul { padding-left: 16px; font-size: 12px; color: #5a4a00; }
+  .presumption-box ul li { margin-bottom: 3px; }
+
+  /* ── TIMELINE CHIP ── */
+  .chip {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    font-size: 10.5px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .chip.red { background: var(--red); }
+  .chip.blue { background: var(--blue-mid); }
+  .chip.green { background: var(--green); }
+
+  /* ── LINKS TABLE ── */
+  .links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  @media (max-width: 600px) {
+    .links-grid { grid-template-columns: 1fr; }
+    .branch-wrap { flex-direction: column; }
+    .branch-divider { display: none; }
+  }
+  .link-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 13px;
+    font-size: 12px;
+  }
+  .link-card .link-cat {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--grey);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-bottom: 3px;
+  }
+  .link-card a {
+    color: var(--blue-mid);
+    text-decoration: none;
+    word-break: break-all;
+    border-bottom: 1px dotted var(--blue-mid);
+    font-size: 11.5px;
+  }
+  .link-card a:hover { color: var(--red); }
+  .link-card .link-desc { color: var(--grey); margin-top: 2px; font-size: 11px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    color: var(--grey);
+    font-size: 11.5px;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* ── ANNOTATION ── */
+  .annotation {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue-mid);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--grey);
+    margin-top: 8px;
+    width: 100%;
+    max-width: 620px;
+  }
+
+  /* ── OVERVIEW TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    background: var(--white);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  th {
+    background: var(--blue);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #fafafa; }
+  td a { color: var(--blue-mid); text-decoration: none; border-bottom: 1px dotted; }
+  td a:hover { color: var(--red); }
+  td code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: var(--grey-light);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="flag">🇯🇵</div>
+  <h1>日本職業病（業務上疾病）完整程序流程圖</h1>
+  <p>
+    <span class="badge">法源依據</span>
+    <span class="badge">政府連結</span>
+    申請 → 調查認定 → 不服申立（異議申請）→ 行政訴訟
+  </p>
+</header>
+
+<div class="container">
+
+  <!-- ===== LAW TABLE ===== -->
+  <div class="section-label">
+    <div class="num">§</div>
+    <h2>主要法源依據</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>法規</th>
+        <th>條文</th>
+        <th>規範內容</th>
+        <th>政府資料來源</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>勞動基準法</strong><br>（労働基準法）</td>
+        <td><code>第75條</code><br><code>第76條</code></td>
+        <td>雇主對業務上疾病負療養補償、休業補償義務</td>
+        <td><a href="https://laws.e-gov.go.jp/law/322AC0000000049" target="_blank">e-Gov 法令全文</a></td>
+      </tr>
+      <tr>
+        <td><strong>勞動基準法施行規則</strong></td>
+        <td><code>第35條</code><br><code>別表第1の2</code></td>
+        <td>職業病清單（業務上疾病の例示列舉）；清單內疾病具法律推定效果</td>
+        <td><a href="https://www.mhlw.go.jp/stf/newpage_30055.html" target="_blank">厚生勞動省・職業病リスト</a></td>
+      </tr>
+      <tr>
+        <td><strong>勞災保険法</strong><br>（労働者災害補償保険法）</td>
+        <td><code>第7條</code><br><code>第12條の8</code></td>
+        <td>保険給付種類（療養・休業・障害・遺族補償等）及請求程序</td>
+        <td><a href="https://laws.e-gov.go.jp/law/322AC0000000050" target="_blank">e-Gov 法令全文</a></td>
+      </tr>
+      <tr>
+        <td><strong>勞動基準法</strong><br>（審查及び仲裁）</td>
+        <td><code>第84條</code><br><code>第85條</code><br><code>第86條</code></td>
+        <td>§84：勞災保険法給付時雇主免責原則（補償與保険之調整）<br>§85：對補償認定・療養方法・補償金額有異議者，可向<strong>行政官廳</strong>申立（聲請）審查或仲裁；官廳亦可依職權啟動<br>§86：對§85之審查・仲裁結果不服者，可向<strong>勞働者災害補償保険審查官</strong>申立（聲請）審查或仲裁（與勞災保険法審査請求（訴願）程序銜接）</td>
+        <td><a href="https://laws.e-gov.go.jp/law/322AC0000000049" target="_blank">e-Gov 勞基法全文</a></td>
+      </tr>
+      <tr>
+        <td><strong>勞動保険審查法</strong><br>（労働保険審査官及び労働保険審査会法）</td>
+        <td><code>第1條以下</code></td>
+        <td>審査請求（訴願）、再審査請求（再訴願）程序；審查官、審查會之組織與權限</td>
+        <td><a href="https://laws.e-gov.go.jp/law/338AC0000000126" target="_blank">e-Gov 法令全文</a></td>
+      </tr>
+      <tr>
+        <td><strong>行政事件訴訟法</strong></td>
+        <td><code>第3條</code><br><code>第14條</code></td>
+        <td>取消訴訟（撤銷訴訟）（勞災不服）之管轄、除斥期間（6個月內）</td>
+        <td><a href="https://laws.e-gov.go.jp/law/337AC0000000139" target="_blank">e-Gov 法令全文</a></td>
+      </tr>
+      <tr>
+        <td><strong>民法</strong></td>
+        <td><code>第415條</code>（債務不履行）<br><code>第709條</code>（不法行為）<br><code>第715條</code>（使用者責任）</td>
+        <td>勞工對雇主提起民事損害賠償訴訟之請求權基礎；與勞災保険程序並行、互補（差額賠償）</td>
+        <td><a href="https://laws.e-gov.go.jp/law/129AC0000000089" target="_blank">e-Gov 民法全文</a></td>
+      </tr>
+      <tr>
+        <td><strong>勞動契約法</strong><br>（労働契約法）</td>
+        <td><code>第5條</code></td>
+        <td>雇主之「安全配慮義務」明文化；違反時構成債務不履行（民法§415），為民事訴訟重要請求依據</td>
+        <td><a href="https://laws.e-gov.go.jp/law/419AC0000000128" target="_blank">e-Gov 労働契約法全文</a></td>
+      </tr>
+      <tr>
+        <td><strong>認定基準通達</strong>（脳・心臓疾患）</td>
+        <td>令和3年9月14日<br>基発0914第1號</td>
+        <td>過勞死認定之時間外勞動標準（月80小時等）；實質推定基準</td>
+        <td><a href="https://www.mhlw.go.jp/content/11201250/000833808.pdf" target="_blank">厚生勞動省・通達 PDF</a></td>
+      </tr>
+      <tr>
+        <td><strong>認定基準通達</strong>（精神障礙）</td>
+        <td>令和5年9月1日<br>基発0901第2號</td>
+        <td>精神障礙認定之心理負荷評定表；達「強」等級即推定業務起因性</td>
+        <td><a href="https://www.mhlw.go.jp/content/11201250/001134160.pdf" target="_blank">厚生勞動省・通達 PDF</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===== PHASE 1: APPLICATION ===== -->
+  <div class="section-label">
+    <div class="num">1</div>
+    <h2>申請階段：勞工向勞動基準監督署提出請求</h2>
+  </div>
+
+  <div class="law-box">
+    <div class="law-title">法源</div>
+    <ul>
+      <li>労災保険法 第12条の8 — 給付請求權</li>
+      <li>労働基準法 第75・76条 — 雇主補償義務</li>
+      <li>労働安全衛生法 第100条・安衛則第97条 — 雇主提出勞働者死傷病報告義務（<span style="color:#c0392b;">※労基法施行規則§22は削除済</span>）</li>
+    </ul>
+    <div style="margin-top:6px;">
+      🔗 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/rousai/index.html" target="_blank">厚生勞動省・勞災補償制度總覽頁</a>
+    </div>
+  </div>
+
+  <div class="flow-wrap">
+
+    <div class="node node-start">
+      <div class="node-tag">起點 START</div>
+      <div class="node-title">勞工發病／受傷</div>
+      <div class="node-body">確認疾病是否屬於「別表第1の2」職業病清單（第1～10號），或符合「第11號包括的救済規定（概括救濟規定）」之情形</div>
+    </div>
+
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <div class="node node-blue">
+      <div class="node-tag">Step 1 — 申請</div>
+      <div class="node-title">向管轄勞動基準監督署長提出「保険給付支給請求書」</div>
+      <div class="node-body">
+        ・由受災勞動者或其遺族提出 <span class="node-law" style="display:inline; margin:0; font-size:10px; opacity:0.7;">（労災保険法§12の8第2項）</span><br>
+        ・請求書上須有雇主就災害事實及薪資蓋章（雇主有協力義務） <span class="node-law" style="display:inline; margin:0; font-size:10px; opacity:0.7;">（労災保険法施行規則§23）</span><br>
+        ・雇主若故意不協助，勞工仍可單獨提出申請 <span class="node-law" style="display:inline; margin:0; font-size:10px; opacity:0.7;">（実務取扱・通達による運用；法律上の明文なし）</span>
+      </div>
+      <div class="node-link">🔗 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/rousai/index.html" target="_blank">厚生勞動省・申請手続き</a></div>
+    </div>
+
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <div class="node node-blue">
+      <div class="node-tag">Step 2 — 調查</div>
+      <div class="node-title">監督署長實施調查</div>
+      <div class="node-body">
+        ・命令事業主（雇主）・勞工・第三者報告・提出文書・出頭（到場）<span class="node-law" style="display:inline; margin:0; font-size:10px; opacity:0.7;">（労災保険法§46・§47）</span><br>
+        ・對事業場（工作場所）・事業主（雇主）進行立入検査（進入檢查）、就勞動時間紀錄等實施調查 <span class="node-law" style="display:inline; margin:0; font-size:10px; opacity:0.7;">（労災保険法§48）</span><br>
+        ・命令診療擔當醫師等報告診療事項・提示診療録・接受檢查 <span class="node-law" style="display:inline; margin:0; font-size:10px; opacity:0.7;">（労災保険法§49）</span><br>
+        ・「別表第1の2」裡的許多疾病，有對應的「認定基準通達」作為評估業務起因性的基準（均為行政指導基準，非法律明文）；各疾病之認定基準通達全文，可於下列頁面的「業務上疾病の認定基準及び関連通達集」查詢：<br>
+        <span class="node-law" style="display:inline; margin:0; font-size:10px; opacity:0.7;">🔗 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/rousai/gyomu.html" target="_blank">厚生勞動省・業務上疾病の認定基準及び関連通達集</a></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRESUMPTION BOX -->
+  <div class="flow-wrap">
+    <div class="presumption-box" style="width:100%;max-width:620px;margin:16px 0;">
+      <h3>⭐ 關鍵：例示疾病的因果關係推定</h3>
+      <p>依據：<strong>昭和53年3月30日 基発第186號</strong>「労働基準法施行規則の一部を改正する省令等の施行について」（四）</p>
+
+      <!-- 原文引用框 -->
+      <div style="background:#fff8e8; border:1px solid #d4b44a; border-left:3px solid #b8860b; border-radius:4px; padding:12px 14px; margin:10px 0; font-size:12px; line-height:1.9; color:#3a2e00;">
+        <div style="font-size:10px; font-weight:600; letter-spacing:0.08em; color:#8a6a00; margin-bottom:6px;">原文引用（<a href="https://www.mhlw.go.jp/web/t_doc?dataId=00tb1902&dataType=1&pageNo=1" target="_blank" style="color:#8a6a00;">基発第186號</a>；令和5年最新版「<a href="https://www.mhlw.go.jp/content/001183366.pdf" target="_blank" style="color:#8a6a00;">業務上疾病の認定基準及び関連通達集（上巻）</a>」亦全文引用）</div>
+        <button onclick="toggleLang('cite1')" id="btn-cite1" style="font-size:10px; padding:2px 10px; border:1px solid #b8860b; border-radius:3px; background:#fff8e8; color:#8a6a00; cursor:pointer; margin-bottom:8px;">翻中文</button>
+        <div id="cite1-ja">
+          以上のように、現在までに業務との<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">因果関係</mark>の<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">確立</mark>したものをできる限り<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">定型化</mark>して、例示疾病として掲げているので、<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">例示疾病</mark>（別表第一〇号により指定される疾病を含む。）については、一般的に業務と疾病との因果関係が<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">推定</mark>されるものである。これらに対する<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">労災保険</mark>における取扱いとしては、従来と同様、一定のばく露条件や症状等を満たす場合には、<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">特段の</mark><mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">反証</mark><mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">のない</mark>限りその疾病は業務に起因するものとして取り扱われるものである。<br><br>
+          これに対して、例示疾病として<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">掲げられていない</mark>疾病については、上記のような意味における一般的な形で業務との因果関係が<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">推定</mark>されるものでは<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">ない</mark>。
+        </div>
+        <div id="cite1-zh" style="display:none;">
+          如上所述，將迄今已確立與業務之<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">因果關係</mark>的疾病盡可能加以<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">定型化</mark>，列舉為<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">例示疾病</mark>。因此，例示疾病（包含依別表第十號指定之疾病）一般情形下，業務與疾病之因果關係<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">被推定</mark>成立。對於此類疾病的勞災保險處理，與以往相同，凡滿足一定暴露條件及症狀等的情形，在無<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">特別</mark><mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">反證</mark>的情況下，即視為該疾病因業務所致。<br><br>
+          另一方面，<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">未被列舉為例示疾病</mark>的疾病，不以上述意義的一般形式<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">推定</mark>業務因果關係。
+        </div>
+      </div>
+
+      <p style="margin-top:8px; font-size:12px; color:#5a4a00;"><strong>【說明】</strong>例示疾病（別表第1の2第1～10號所列舉之疾病）：業務與疾病的因果關係一般性地被「推定」，在滿足一定暴露條件及症狀的情況下，<strong>特段の反証のない</strong>限り即認定為業務起因——此為厚生勞動省官方通達之明文。<br>
+      例示疾病以外之疾病（第11號概括救濟規定適用對象）：<strong>無此推定效果</strong>，須由勞工個案舉證業務起因性。</p>
+
+      <!-- 3要件引用框 -->
+      <div style="background:#fff8e8; border:1px solid #d4b44a; border-left:3px solid #b8860b; border-radius:4px; padding:12px 14px; margin:12px 0; font-size:12px; line-height:1.9; color:#3a2e00;">
+        <div style="font-size:10px; font-weight:600; letter-spacing:0.08em; color:#8a6a00; margin-bottom:8px;">原文引用（<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/gyousei/rousai/040325-12.html" target="_blank" style="color:#8a6a00;">厚生勞動省「労災保険給付の概要」パンフレット</a>）</div>
+        <button onclick="toggleLang('cite2')" id="btn-cite2" style="font-size:10px; padding:2px 10px; border:1px solid #b8860b; border-radius:3px; background:#fff8e8; color:#8a6a00; cursor:pointer; margin-bottom:8px;">翻中文</button>
+        <div id="cite2-ja">
+          一般的に、労働者に発症した疾病について、次の<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">3要件</mark>が満たされる場合には、原則として<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">業務上疾病</mark>と認められます。<br><br>
+          <div style="background:#2e7d52; color:#fff; padding:3px 8px; border-radius:3px; margin:6px 0 4px; font-weight:600;">① 労働の場に有害因子が存在していること</div>
+          業務に内在する有害な物理的因子、化学物質、身体に過度の負担のかかる作業、病原体などの諸因子を指します。<br><br>
+          <div style="background:#2e7d52; color:#fff; padding:3px 8px; border-radius:3px; margin:6px 0 4px; font-weight:600;">② 健康障害を起こしうるほどの有害因子にさらされたこと</div>
+          健康障害は、有害因子にさらされることによって起こりますが、その健康障害を起こすに<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">足りる</mark>有害因子の<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">量</mark>、<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">期間</mark>にさらされたことが認められなければなりません。<br><br>
+          <div style="background:#2e7d52; color:#fff; padding:3px 8px; border-radius:3px; margin:6px 0 4px; font-weight:600;">③ 発症の経過および病態が医学的にみて妥当であること</div>
+          業務上疾病は、労働者が業務に内在する有害因子に接触することによって起こるものであることから、少なくともその有害因子にさらされた<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">後に</mark>発症したものでなければなりません。<br>
+          　しかし、業務上疾病の中には、有害因子にさらされた後、<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">短期間</mark>で発症するものもあれば、<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">相当長期間</mark>の潜伏期間を経て発症するものもあり、発症の時期は有害因子の性質や接触条件などによって異なります。<br>
+          　したがって、発症の時期は、有害因子にさらされている間またはその直後のみに限定されるものではありません。
+        </div>
+        <div id="cite2-zh" style="display:none;">
+          一般而言，對於勞工所罹患的疾病，若同時滿足以下<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">3項要件</mark>，原則上即認定為<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">業務上疾病</mark>。<br><br>
+          <div style="background:#2e7d52; color:#fff; padding:3px 8px; border-radius:3px; margin:6px 0 4px; font-weight:600;">① 勞動場所中存在有害因子</div>
+          指業務中內含的有害物理性因子、化學物質、對身體造成過度負擔的作業形態、病原體等各類因子。<br><br>
+          <div style="background:#2e7d52; color:#fff; padding:3px 8px; border-radius:3px; margin:6px 0 4px; font-weight:600;">② 曾暴露於足以引起健康障害程度的有害因子</div>
+          健康障害是由暴露於有害因子所致，重點在於是否受到<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">足以</mark>引起該健康障害的有害因子<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">量</mark>與<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">期間</mark>的暴露。<br><br>
+          <div style="background:#2e7d52; color:#fff; padding:3px 8px; border-radius:3px; margin:6px 0 4px; font-weight:600;">③ 發病的經過及病態在醫學上具有妥當性</div>
+          業務上疾病是勞工接觸業務中內含的有害因子所致，因此至少必須是在暴露於該有害因子<mark style="background:#8a9a3a; color:#fff; padding:0 2px; border-radius:2px;">之後</mark>發病。<br>
+          　然而，業務上疾病中，有些在暴露於有害因子後<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">短期間</mark>內即發病，也有些需經過<mark style="background:#c97b7b; color:#fff; padding:0 2px; border-radius:2px;">相當長期</mark>的潛伏期才發病，發病時期因有害因子的性質與接觸條件而有所不同。<br>
+          　因此，發病時期並不限於暴露於有害因子期間或其緊接之後。
+        </div>
+      </div>
+
+      <script>
+        function toggleLang(id) {
+          var jaEl = document.getElementById(id + '-ja');
+          var zhEl = document.getElementById(id + '-zh');
+          var btn = document.getElementById('btn-' + id);
+          if (jaEl.style.display !== 'none') {
+            jaEl.style.display = 'none';
+            zhEl.style.display = 'block';
+            btn.textContent = '回原文';
+          } else {
+            jaEl.style.display = 'block';
+            zhEl.style.display = 'none';
+            btn.textContent = '翻中文';
+          }
+        }
+      </script>
+
+      <p style="margin-top:8px;">
+        🔗 <a href="https://www.mhlw.go.jp/stf/newpage_30055.html" target="_blank" style="color:#8a6a00;">職業病清單（別表第1の2）</a>
+        　🔗 <a href="https://www.mhlw.go.jp/content/001309209.pdf" target="_blank" style="color:#8a6a00;">精神障礙認定パンフレット</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== PHASE 2: DECISION ===== -->
+  <div class="section-label">
+    <div class="num">2</div>
+    <h2>認定階段：監督署長作出決定</h2>
+  </div>
+
+  <div class="flow-wrap">
+    <div class="node node-gold">
+      <div class="node-tag">Step 3 — 認定決定</div>
+      <div class="node-title">監督署長以書面作出支給（給付）決定或不支給（不予給付）決定</div>
+      <div class="node-body">
+        通知申請人決定內容，說明理由及不服申立（異議申請）之方法與期限
+      </div>
+      <div class="node-law">法源：労災保険法§8、行政手続法§8</div>
+    </div>
+
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <div class="branch-wrap">
+      <!-- 左：支給 -->
+      <div class="branch-side">
+        <div class="arrow green">
+          <div class="arrow-label">✔ 支給（給付）決定（業務上）</div>
+          <div class="arrow-line"></div>
+          <div class="arrow-head"></div>
+        </div>
+        <div class="node node-green" style="width:100%;">
+          <div class="node-tag">結果 A</div>
+          <div class="node-title">給付勞災保険金</div>
+          <div class="node-body">
+            療養補償・休業補償・障害（失能）補償・遺族補償・介護（照護）補償 等
+          </div>
+          <div class="node-law">法源：労災保険法§12の8</div>
+          <div class="node-link">🔗 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/gyousei/rousai/040325-12.html" target="_blank">給付種類一覧</a></div>
+        </div>
+      </div>
+
+      <div class="branch-divider"></div>
+
+      <!-- 右：不支給 -->
+      <div class="branch-side">
+        <div class="arrow red">
+          <div class="arrow-label">✘ 不支給（不予給付）決定（業務外）</div>
+          <div class="arrow-line"></div>
+          <div class="arrow-head"></div>
+        </div>
+        <div class="node node-red" style="width:100%;">
+          <div class="node-tag">結果 B → 進入爭議程序</div>
+          <div class="node-title">勞工有異議 → 進入不服申立（異議申請）程序</div>
+          <div class="node-body">
+            須在「知悉決定之翌日起<strong>3個月內</strong>」提出審査請求（訴願）
+          </div>
+          <div class="node-law">法源：労働保険審査法§38</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== PHASE 2b: §85/86 REVIEW & ARBITRATION ===== -->
+  <div class="section-label">
+    <div class="num" style="background:var(--gold);">※</div>
+    <h2>勞基法§85・§86：審査及び仲裁（行政官廳途徑）</h2>
+  </div>
+
+  <div class="law-box">
+    <div class="law-title">法源・適用範圍</div>
+    <ul>
+      <li>労働基準法 第85條 — 對補償認定・療養方法・補償金額有異議，向<strong>行政官廳（勞動基準監督署長）</strong>申立（聲請）審查或仲裁</li>
+      <li>労働基準法 第86條 — 對§85審查・仲裁結果不服，向<strong>勞働者災害補償保険審查官</strong>進一步申立（與勞災保険法審査請求（訴願）程序銜接）</li>
+      <li>労働基準法 第84條 — 雇主已依勞災保険法給付時，同一事由之民事補償責任免除（保険・補償調整原則）</li>
+    </ul>
+    🔗 <a href="https://laws.e-gov.go.jp/law/322AC0000000049" target="_blank">e-Gov 勞動基準法全文（§84・§85・§86）</a>
+  </div>
+
+  <div class="flow-wrap">
+
+    <div class="node node-amber">
+      <div class="node-tag">勞基法§85 — 第一步：向行政官廳申立（聲請）審查或仲裁</div>
+      <div class="node-title">對補償認定・療養方法・補償金額有異議 → 向勞動基準監督署長申立（聲請）</div>
+      <div class="node-body">
+        ・<strong>申立（聲請）事項</strong>：業務上疾病之認定、療養方法、補償金額之決定等<br>
+        ・<strong>職權啟動</strong>：行政官廳認為必要時，亦可依職權主動進行審查或仲裁<br>
+        ・性質上為勞基法補償制度自身的行政爭議處理機制，<strong>獨立於勞災保険法審査請求（訴願）程序</strong>
+      </div>
+      <div class="node-law">法源：労働基準法§85</div>
+      <div class="node-link">🔗 <a href="https://laws.e-gov.go.jp/law/322AC0000000049" target="_blank">e-Gov 勞基法全文</a></div>
+    </div>
+
+    <div class="arrow red">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">對§85結果不服</div>
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <div class="node node-amber">
+      <div class="node-tag">勞基法§86 — 第二步：向勞働者災害補償保険審查官申立（聲請）</div>
+      <div class="node-title">對§85審查・仲裁結果不服 → 向勞働者災害補償保険審查官申立（聲請）審查或仲裁</div>
+      <div class="node-body">
+        ・此處與勞災保険法的「審査請求（訴願）」程序<strong>銜接匯流</strong><br>
+        ・後續依勞動保険審查法循序進行再審査請求（再訴願）→取消訴訟（撤銷訴訟）（見第3節）
+      </div>
+      <div class="node-law">法源：労働基準法§86</div>
+    </div>
+
+    <div class="annotation">
+      📋 <strong>§85・§86 與勞災保険法審査請求（訴願）的關係</strong>：兩者並非同一程序。勞基法§85・§86是針對「雇主補償義務」爭議的行政官廳途徑；勞災保険法審査請求（訴願）則是針對「保険給付決定」的不服申立（異議申請）途徑。實務上，勞災保険法給付啟動後，§85・§86較少單獨適用，但在雇主直接補償（未透過保険）發生爭議時仍有適用空間。§84則確立兩套制度的免責調整原則。
+    </div>
+
+  </div>
+
+  <!-- ===== PHASE 3: APPEAL ===== -->
+  <div class="section-label">
+    <div class="num">3</div>
+    <h2>不服申立（異議申請）：三層救濟架構</h2>
+  </div>
+
+  <div class="law-box">
+    <div class="law-title">法源</div>
+    <ul>
+      <li>労働基準法 第86條 — 對§85結果不服，銜接至審查官程序（入口）</li>
+      <li>労働保険審查官及び労働保険審査会法 第1條以下</li>
+      <li>行政不服申立法〔行政異議申請法〕（平成26年法律第68号）— 一般原則</li>
+      <li>行政事件訴訟法 第3條、第14條 — 取消訴訟（撤銷訴訟）</li>
+    </ul>
+    🔗 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000127192.html" target="_blank">厚生勞動省・勞災保険審査請求（訴願）制度</a>
+    　🔗 <a href="https://www.mhlw.go.jp/topics/bukyoku/shinsa/roudou/02-01.html" target="_blank">審查制度仕組み圖（官方圖解）</a>
+  </div>
+
+  <div class="flow-wrap">
+
+    <!-- 第一層 -->
+    <div class="node node-blue">
+      <div class="node-tag">第一層不服申立（異議申請）</div>
+      <div class="node-title">審査請求（訴願） → 都道府縣勞動局・勞働者災害補償保険審查官</div>
+      <div class="node-body">
+        <span class="chip red">期限</span> 知悉決定之翌日起 <strong>3個月內</strong><br>
+        <span class="chip blue">程序</span> 提出審査請求（訴願）書 → 審查官進行書類（書面）審查及聽取意見<br>
+        <span class="chip">結果</span> 認容（准許）（撤銷原處分）或棄却（駁回）（維持原決定）
+      </div>
+      <div class="node-law">法源：労働保険審查法§38・§40</div>
+      <div class="node-link">🔗 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000127192.html" target="_blank">審査請求（訴願）書下載・制度說明</a></div>
+    </div>
+
+    <div class="arrow red">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">棄却（駁回）或 3個月無決定</div>
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <!-- 第二層 -->
+    <div class="node node-blue">
+      <div class="node-tag">第二層不服申立（異議申請）</div>
+      <div class="node-title">再審査請求（再訴願） → 勞働保険審查會（東京・厚生勞動大臣管轄）</div>
+      <div class="node-body">
+        <span class="chip red">期限</span> 審查官決定翌日起 <strong>2個月內</strong>（或3個月無決定後）<br>
+        <span class="chip blue">程序</span> 9名委員合議制・原則進行口頭意見陳述<br>
+        <span class="chip">結果</span> 認容（准許）（撤銷）或棄却（駁回）
+      </div>
+      <div class="node-law">法源：労働保険審查法§38・§49・§56</div>
+      <div class="node-link">🔗 <a href="https://www.mhlw.go.jp/topics/bukyoku/shinsa/roudou/index.html" target="_blank">勞働保険審查會 公式頁</a></div>
+    </div>
+
+    <div class="arrow red">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">棄却（駁回）或 3個月無裁決（決定）</div>
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <!-- 第三層 -->
+    <div class="node node-red">
+      <div class="node-tag">第三層：行政訴訟</div>
+      <div class="node-title">取消訴訟（撤銷訴訟） → 地方裁判所（行政訴訟）</div>
+      <div class="node-body">
+        <span class="chip red">期限</span> 知悉裁決（決定）之翌日起 <strong>6個月內</strong>（不變期間）<br>
+        <span class="chip blue">被告</span> 國家（作出行政處分〔処分〕之監督署長所屬行政主體〔行政主体〕）<br>
+        <span class="chip">訴訟種類</span> 原処分（行政處分）取消訴訟（撤銷訴訟） 或 裁決（決定）取消訴訟（撤銷訴訟）<br>
+        ※ 原則須先經過審査請求（訴願）・再審査請求（再訴願）（審査前置主義）
+      </div>
+      <div class="node-law">法源：行政事件訴訟法§3・§14、労働保険審査法§38の2</div>
+      <div class="node-link">🔗 <a href="https://laws.e-gov.go.jp/law/337AC0000000139" target="_blank">行政事件訴訟法 e-Gov 全文</a></div>
+    </div>
+
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <div class="node node-grey">
+      <div class="node-tag">最終救濟</div>
+      <div class="node-title">高等裁判所（控訴）→ 最高裁判所（上告〔上訴〕）</div>
+      <div class="node-body">
+        對地方裁判所判決不服，可依民事訴訟法規定循序上訴
+      </div>
+    </div>
+
+    <div class="annotation">
+      ⚠ <strong>審查前置主義（不服申立（異議申請）前置原則）</strong>：依労働保険審查法§38の2，對勞災給付決定之取消訴訟（撤銷訴訟），必須先經過審査請求（訴願）及再審査請求（再訴願）程序，方得向法院提起，不得直接起訴。
+    </div>
+
+  </div>
+
+  <!-- ===== PHASE 4: CIVIL LITIGATION ===== -->
+  <div class="section-label">
+    <div class="num">4</div>
+    <h2>民事訴訟：對雇主直接請求損害賠償（與行政程序並行）</h2>
+  </div>
+
+  <div class="law-box">
+    <div class="law-title">法源（民事）</div>
+    <ul>
+      <li>民法 第415條 — 債務不履行責任（安全配慮義務違反）</li>
+      <li>民法 第709條 — 不法行為責任（雇主自身の過失）</li>
+      <li>民法 第715條 — 使用者責任（従業員の加害行為）</li>
+      <li>労働契約法 第5條 — 安全配慮義務の明文規定</li>
+      <li>労災保険法 第64條 — 勞災給付與民事賠償之調整（差額補償原則）</li>
+    </ul>
+    🔗 <a href="https://laws.e-gov.go.jp/law/129AC0000000089" target="_blank">e-Gov 民法全文</a>　
+    🔗 <a href="https://laws.e-gov.go.jp/law/419AC0000000128" target="_blank">e-Gov 労働契約法全文</a>
+  </div>
+
+  <div class="flow-wrap">
+
+    <div class="node node-gold" style="border-left: 4px solid var(--gold);">
+      <div class="node-tag">民事訴訟 — 起點</div>
+      <div class="node-title">勞災發生 → 勞工評估是否對雇主提起民事損害賠償</div>
+      <div class="node-body">
+        ・<strong>民事訴訟與行政程序（勞災保険）可同時並行</strong>，互不妨礙<br>
+        ・勞災保険給付僅涵蓋療養・休業・障害（失能）補償，<strong>不含慰謝料（精神損害賠償）及逸失利益全額</strong><br>
+        ・差額部分（勞災給付未補足之損害）可另向雇主請求
+      </div>
+    </div>
+
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <!-- 兩種請求權 -->
+    <div class="branch-wrap">
+      <div class="branch-side">
+        <div class="node node-gold" style="width:100%;">
+          <div class="node-tag">請求權 A</div>
+          <div class="node-title">債務不履行責任<br>（安全配慮義務違反）</div>
+          <div class="node-body">
+            根據：<strong>労働契約法§5＋民法§415</strong><br>
+            要件：雇主違反安全配慮義務（預見可能性＋結果回避義務）<br>
+            時效：<span class="chip">改正民法適用後</span>知悉損害及義務者起5年、客觀上10年<br>
+            優點：舉證責任相對有利於勞工（雇主需證明已盡義務）
+          </div>
+          <div class="node-law">法源：民法§415、労働契約法§5</div>
+        </div>
+      </div>
+      <div class="branch-divider"></div>
+      <div class="branch-side">
+        <div class="node node-gold" style="width:100%;">
+          <div class="node-tag">請求權 B</div>
+          <div class="node-title">不法行為責任<br>（＋使用者責任）</div>
+          <div class="node-body">
+            根據：<strong>民法§709（自身過失）＋§715（使用者責任）</strong><br>
+            要件：雇主之故意或過失、損害、因果關係<br>
+            時效：知悉損害及加害者起<strong>3年</strong>（或行為起20年）<br>
+            優點：死亡時遲延損害金可自被災日起算
+          </div>
+          <div class="node-law">法源：民法§709・§715</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation">
+      ⚠ <strong>請求權競合</strong>：實務上，被災勞工通常<strong>同時主張債務不履行（§415）與不法行為（§709・§715）兩種請求權</strong>，以爭取最有利之時效與賠償範圍。兩者不可重複受償，但可選擇對己方有利者優先主張。
+    </div>
+
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <div class="node node-blue">
+      <div class="node-tag">民事訴訟程序</div>
+      <div class="node-title">向地方裁判所提起民事損害賠償訴訟</div>
+      <div class="node-body">
+        <span class="chip blue">被告</span> 雇主（使用者・企業）<br>
+        <span class="chip blue">審理</span> 民事訴訟法程序（非行政訴訟）<br>
+        <span class="chip blue">賠償項目</span> 慰謝料・逸失利益・治療費・護理費・喪葬費等<br>
+        ・勞災給付已受領部分，雇主可主張於同一損害項目內扣除（損益相殺〔損益相抵〕）<br>
+        ・<strong>慰謝料不在勞災給付範圍內，民事訴訟可額外請求</strong>
+      </div>
+      <div class="node-law">法源：民事訴訟法・民法§415・§709・§715・労災保険法§64</div>
+    </div>
+
+    <div class="arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+
+    <div class="node node-grey">
+      <div class="node-tag">上訴救濟</div>
+      <div class="node-title">高等裁判所（控訴）→ 最高裁判所（上告〔上訴〕）</div>
+      <div class="node-body">
+        對地方裁判所判決不服，依民事訴訟法循序上訴
+      </div>
+    </div>
+
+    <div class="annotation" style="border-left-color: var(--gold);">
+      📋 <strong>行政訴訟 vs 民事訴訟的關係</strong>：<br>
+      兩者訴訟對象不同——行政訴訟的被告是「國家」（針對勞災認定決定），民事訴訟的被告是「雇主」（針對損害賠償）。兩種訴訟可同時並行，互不影響。<br>
+      勞災認定結果（業務上/業務外）<strong>在民事訴訟中具有重要的事實認定參考效力</strong>，但法院不受行政認定結論的拘束，可獨立判斷因果關係。
+    </div>
+
+  </div>
+
+  <!-- ===== SUMMARY TIMELINE ===== -->
+  <div class="section-label">
+    <div class="num">5</div>
+    <h2>期限彙整一覽</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>程序階段</th>
+        <th>辦理機關</th>
+        <th>期限</th>
+        <th>法源條文</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>保険給付請求</td>
+        <td>管轄勞動基準監督署長</td>
+        <td>療養開始後隨時（時效2年）</td>
+        <td><code>労災保険法§42</code></td>
+      </tr>
+      <tr>
+        <td><strong>§85 審查・仲裁申立（聲請）</strong></td>
+        <td>行政官廳（勞動基準監督署長）</td>
+        <td>法無明文期限規定；建議儘速申立（聲請）</td>
+        <td><code>労基法§85</code></td>
+      </tr>
+      <tr>
+        <td><strong>§86 再申立（聲請）</strong>（對§85不服）</td>
+        <td>勞働者災害補償保険審查官</td>
+        <td>法無明文期限規定；銜接審査請求（訴願）程序</td>
+        <td><code>労基法§86</code></td>
+      </tr>
+      <tr>
+        <td><strong>審査請求（訴願）</strong>（第一層）</td>
+        <td>都道府縣勞動局・審查官</td>
+        <td><strong>知悉決定翌日起3個月內</strong></td>
+        <td><code>労働保険審查法§38</code></td>
+      </tr>
+      <tr>
+        <td><strong>再審査請求（再訴願）</strong>（第二層）</td>
+        <td>勞働保険審查會</td>
+        <td><strong>審查官決定翌日起2個月內</strong>（或3個月無決定後）</td>
+        <td><code>労働保険審查法§49</code></td>
+      </tr>
+      <tr>
+        <td><strong>取消訴訟（撤銷訴訟）</strong>（第三層）</td>
+        <td>地方裁判所</td>
+        <td><strong>知悉裁決（決定）翌日起6個月內</strong>（不變期間）</td>
+        <td><code>行訴法§14</code></td>
+      </tr>
+      <tr>
+        <td><strong>民事訴訟</strong>（債務不履行・安全配慮義務違反）</td>
+        <td>地方裁判所（被告：雇主）</td>
+        <td>知悉損害及義務者起<strong>5年</strong>；客觀上<strong>10年</strong></td>
+        <td><code>民法§415・§166</code></td>
+      </tr>
+      <tr>
+        <td><strong>民事訴訟</strong>（不法行為・使用者責任）</td>
+        <td>地方裁判所（被告：雇主）</td>
+        <td>知悉損害及加害者起<strong>3年</strong>；或行為起<strong>20年</strong></td>
+        <td><code>民法§709・§715・§724</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===== LINKS ===== -->
+  <div class="section-label">
+    <div class="num">6</div>
+    <h2>主要政府網頁・文件連結</h2>
+  </div>
+
+  <div class="links-grid">
+    <div class="link-card">
+      <div class="link-cat">制度總覽</div>
+      <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/rousai/index.html" target="_blank">厚生勞動省・勞災補償制度トップページ</a>
+      <div class="link-desc">申請手續、給付種類、相關法令一覽</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">職業病清單</div>
+      <a href="https://www.mhlw.go.jp/stf/newpage_30055.html" target="_blank">別表第1の2 職業病リスト（厚生勞動省）</a>
+      <div class="link-desc">勞基法施行規則別表・法律推定之基礎清單</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">不服申立（異議申請）・流程圖</div>
+      <a href="https://www.mhlw.go.jp/topics/bukyoku/shinsa/roudou/02-01.html" target="_blank">労働保険審查制度の仕組み（官方圖解）</a>
+      <div class="link-desc">三層審查制度流程圖（GIF格式，官方發布）</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">審査請求（訴願）</div>
+      <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000127192.html" target="_blank">労災保険審査請求（訴願）制度（文件下載）</a>
+      <div class="link-desc">含審査請求（訴願）書 DOCX、記載例 PDF 下載</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">再審査請求（再訴願）</div>
+      <a href="https://www.mhlw.go.jp/topics/bukyoku/shinsa/roudou/index.html" target="_blank">労働保険審查會 公式頁</a>
+      <div class="link-desc">審查會組織、機能、裁決案例</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">過勞死認定通達</div>
+      <a href="https://www.mhlw.go.jp/content/11201250/000833808.pdf" target="_blank">脳・心臓疾患の労災認定基準（令和3年）PDF</a>
+      <div class="link-desc">基発0914第1號・月80小時等推定基準</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">精神障礙認定通達</div>
+      <a href="https://www.mhlw.go.jp/content/11201250/001134160.pdf" target="_blank">精神障害の労災認定基準（令和5年）PDF</a>
+      <div class="link-desc">基発0901第2號・心理負荷評定表</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">精神障礙パンフレット</div>
+      <a href="https://www.mhlw.go.jp/content/001309209.pdf" target="_blank">精神障害の労災認定（パンフレット）PDF</a>
+      <div class="link-desc">含認定フローチャート・申請手続き說明</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">法令全文（e-Gov）</div>
+      <a href="https://laws.e-gov.go.jp/law/322AC0000000049" target="_blank">勞動基準法</a>　／　
+      <a href="https://laws.e-gov.go.jp/law/322AC0000000050" target="_blank">労災保険法</a>
+      <div class="link-desc">日本政府電子法規資料庫（e-Gov）</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">法令全文（e-Gov）</div>
+      <a href="https://laws.e-gov.go.jp/law/129AC0000000089" target="_blank">民法</a>　／　
+      <a href="https://laws.e-gov.go.jp/law/419AC0000000128" target="_blank">労働契約法</a>
+      <div class="link-desc">民事損害賠償請求法源（§415債務不履行・§709不法行為・§715使用者責任）</div>
+    </div>
+    <div class="link-card">
+      <div class="link-cat">法令全文（e-Gov）</div>
+      <a href="https://laws.e-gov.go.jp/law/338AC0000000126" target="_blank">労働保険審查法</a>　／　
+      <a href="https://laws.e-gov.go.jp/law/337AC0000000139" target="_blank">行政事件訴訟法</a>
+      <div class="link-desc">日本政府電子法規資料庫（e-Gov）</div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  本文件依據日本現行法規（截至2025年）及厚生勞動省公開資料整理．僅供參考，非正式法律意見。<br>
+  資料來源：厚生勞動省（mhlw.go.jp）・e-Gov 法令搜索（laws.e-gov.go.jp）
+</footer>
+
+</body>
+</html>
