@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>日本職業病（業務上疾病）完整程序流程圖</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1a1a2e;
@@ -30,7 +30,7 @@
 
   body {
     font-size: 18px;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     background: #f0ede8;
     color: var(--ink);
     line-height: 1.7;
@@ -61,7 +61,7 @@
   }
   header .flag { font-size: 33.5px; margin-bottom: 6px; }
   header h1 {
-    font-family: 'Noto Serif TC', serif;
+    font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
     font-size: 29px;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -101,7 +101,7 @@
   .section-label .num {
     background: var(--blue);
     color: #fff;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     font-size: 14.5px;
     font-weight: 500;
     width: 28px; height: 28px;
@@ -110,7 +110,7 @@
     flex-shrink: 0;
   }
   .section-label h2 {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     font-size: 23px;
     font-weight: 700;
     color: var(--blue);
@@ -175,10 +175,10 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 5px;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
   }
   .node .node-title {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     font-size: 19px;
     font-weight: 700;
     margin-bottom: 4px;
@@ -190,7 +190,7 @@
   .node .node-law {
     margin-top: 8px;
     font-size: 16px;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     opacity: 0.75;
   }
   .node .node-link {
@@ -222,6 +222,8 @@
   .node-red .node-title { color: var(--red); }
 
   .node-gold { background: var(--gold-light); border: 1.5px solid #e6cc6a; }
+  .node-amber { background: #fdf0dc; border: 1.5px solid #d4943a; }
+  .node-amber .node-title { color: #8a4e00; }
   .node-gold .node-tag { color: var(--gold); }
   .node-gold .node-title { color: var(--gold); }
 
@@ -251,7 +253,7 @@
   .arrow-label {
     font-size: 13px;
     color: var(--grey);
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     background: #f0ede8;
     padding: 1px 8px;
     border-radius: 10px;
@@ -307,10 +309,10 @@
     padding: 2px 10px;
     border-radius: 3px;
     letter-spacing: 0.08em;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
   }
   .presumption-box h3 {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     font-size: 17px;
     color: var(--gold);
     margin-bottom: 8px;
@@ -325,7 +327,7 @@
     background: var(--ink);
     color: #fff;
     font-size: 12.5px;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     padding: 2px 9px;
     border-radius: 20px;
     margin-right: 6px;
@@ -360,7 +362,7 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--grey);
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     margin-bottom: 3px;
   }
   .link-card a {
@@ -426,7 +428,7 @@
   td a { color: var(--blue-mid); text-decoration: none; border-bottom: 1px dotted; }
   td a:hover { color: var(--red); }
   td code {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans TC', 'Noto Sans JP', sans-serif;
     font-size: 13px;
     background: var(--grey-light);
     padding: 1px 5px;
@@ -674,15 +676,13 @@
   <div class="flow-wrap">
 
     <div class="node node-amber">
-      <div class="node-tag">労基法§85 — 第一步：向行政官廳申立（聲請）審查或仲裁</div>
+      <div class="node-tag"><a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-Ch_8-At_85" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労基法§85</a> — 第一步：向行政官廳申立（聲請）審查或仲裁</div>
       <div class="node-title">對補償認定・療養方法・補償金額有異議 → 向労働基準監督署長申立（聲請）</div>
       <div class="node-body">
         ・<strong>申立（聲請）事項</strong>：業務上疾病之認定、療養方法、補償金額之決定等<br>
         ・<strong>職權啟動</strong>：行政官廳認為必要時，亦可依職權主動進行審查或仲裁<br>
         ・性質上為労基法補償制度自身的行政爭議處理機制，<strong>獨立於労災保険法審査請求（訴願）程序</strong>
       </div>
-      <div class="node-law">法源：<a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-Ch_8-At_85" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労働基準法§85</a></div>
-      <div class="node-link">🔗 <a href="https://laws.e-gov.go.jp/law/322AC0000000049" target="_blank" style="text-decoration:none;border-bottom:1px dotted currentColor;">e-Gov 労基法全文</a></div>
     </div>
 
     <div class="arrow red">
@@ -693,13 +693,12 @@
     </div>
 
     <div class="node node-amber">
-      <div class="node-tag">労基法§86 — 第二步：向労働者災害補償保険審査官申立（聲請）</div>
+      <div class="node-tag"><a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-Ch_8-At_86" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労基法§86</a> — 第二步：向労働者災害補償保険審査官申立（聲請）</div>
       <div class="node-title">對§85審查・仲裁結果不服 → 向労働者災害補償保険審査官申立（聲請）審查或仲裁</div>
       <div class="node-body">
         ・此處與労災保険法的「審査請求（訴願）」程序<strong>銜接匯流</strong><br>
         ・後續依労働保険審查法循序進行再審査請求（再訴願）→取消訴訟（撤銷訴訟）（見第3節）
       </div>
-      <div class="node-law">法源：<a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-Ch_8-At_86" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労働基準法§86</a></div>
     </div>
 
     <div class="annotation">
