@@ -64,7 +64,7 @@
       rgba(255,255,255,0.03) 24px
     );
   }
-  header .flag { font-family: 'Noto Serif TC', 'Noto Sans JP', serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
+  header .flag { font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
   header h1 {
     font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
     font-size:29px;
@@ -79,6 +79,27 @@
     letter-spacing:0.05em;
     color: rgba(255,255,255,0.85);
     margin-bottom:10px;
+  }
+
+  /* 手機版：顯示三行，隱藏一行版 */
+  .header-mobile { display: block; }
+  .header-desktop { display: none; }
+
+  /* 電腦版（768px 以上）：隱藏三行，顯示一行版 */
+  @media (min-width: 768px) {
+    .header-mobile { display: none; }
+    .header-desktop { display: flex; align-items: center; margin-bottom: 10px; }
+    .flag-emoji {
+      font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+      font-size: 29px;
+    }
+    .header-title-full {
+      font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
+      font-size: 29px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
   }
   header p {
     font-size:17px;
@@ -481,7 +502,7 @@
     pointer-events: none;
     background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,0.03) 12px, rgba(255,255,255,0.03) 24px);
   }
-  #view-simple .sp-hdr .flag { font-family: 'Noto Serif TC', 'Noto Sans JP', serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
+  #view-simple .sp-hdr .flag { font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
   #view-simple .sp-hdr h1 {
     font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
     font-size:29px; font-weight:700; letter-spacing:0.05em; margin-bottom:4px;
@@ -490,6 +511,22 @@
     font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
     font-size:22px; font-weight:600; letter-spacing:0.05em;
     color: rgba(255,255,255,0.85); margin-bottom:10px;
+  }
+  /* 手機版：顯示三行，隱藏一行版 */
+  #view-simple .sp-mobile { display: block; }
+  #view-simple .sp-desktop { display: none; }
+  /* 電腦版（768px 以上）：隱藏三行，顯示一行版 */
+  @media (min-width: 768px) {
+    #view-simple .sp-mobile { display: none; }
+    #view-simple .sp-desktop { display: flex; align-items: center; margin-bottom: 10px; }
+    #view-simple .sp-flag-emoji {
+      font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
+      font-size: 29px;
+    }
+    #view-simple .sp-title-full {
+      font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
+      font-size: 29px; font-weight: 700; letter-spacing: 0.05em; color: #fff;
+    }
   }
   #view-simple .sp-hdr p {
     font-size:17px; color: rgba(255,255,255,0.7); font-weight:300; margin:0;
@@ -599,9 +636,14 @@
 
 <div id="view-full">
 <header>
-  <div class="flag">🇯🇵　日︀本︁</div>
-  <h1>業︁務︀上︀疾︀病︁（職︁業︁病︁）</h1>
-  <h2 class="subtitle">流︀程︀圖︁（完︀整︁版︁）</h2>
+  <!-- 手機版：三行分開 -->
+  <div class="flag header-mobile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" style="width:1.4em;height:0.93em;vertical-align:-0.1em;margin-right:0.15em;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,0.3);"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/></svg>　日︀本︁</div>
+  <h1 class="header-mobile">業︁務︀上︀疾︀病︁（職︁業︁病︁）</h1>
+  <h2 class="subtitle header-mobile">流︀程︀圖︁（完︀整︁版︁）</h2>
+  <!-- 電腦版：一行 -->
+  <div class="header-desktop">
+    <span class="flag-emoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" style="width:1.4em;height:0.93em;vertical-align:-0.1em;margin-right:0.15em;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,0.3);"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/></svg></span>　<span class="header-title-full">日本業務上疾病（職業病）流程圖（完整版）</span>
+  </div>
   <p>申︀請︀ → 調︁查︀認︀定︀ → 訴︀願︁ → 行︀政︀訴︁訟︁</p>
   <p>（民︀事︁訴︁訟︁可︁並︁行︀）</p>
   <p style="margin-top:6px;">整︁理︀ by <a href="https://junhaoshihmd.blogspot.com/p/profile.html" target="_blank" style="color:rgba(255,255,255,0.7);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,0.6);">許︀君︀豪︁醫︀師︁</a> (via claude.ai)</p>
@@ -1519,9 +1561,14 @@
 <div id="view-simple">
 
 <div class="sp-hdr">
-  <div class="flag">🇯🇵　日本</div>
-  <h1>業務上疾病（職業病）</h1>
-  <h2 class="subtitle">流程圖（精簡版）</h2>
+  <!-- 手機版：三行分開 -->
+  <div class="flag sp-mobile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" style="width:1.4em;height:0.93em;vertical-align:-0.1em;margin-right:0.15em;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,0.3);"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/></svg>　日本</div>
+  <h1 class="sp-mobile">業務上疾病（職業病）</h1>
+  <h2 class="subtitle sp-mobile">流程圖（精簡版）</h2>
+  <!-- 電腦版：一行 -->
+  <div class="sp-desktop">
+    <span class="sp-flag-emoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" style="width:1.4em;height:0.93em;vertical-align:-0.1em;margin-right:0.15em;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,0.3);"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/></svg></span>　<span class="sp-title-full">日本業務上疾病（職業病）流程圖（精簡版）</span>
+  </div>
   <p>申請 → 調查認定 → 訴願 → 行政訴訟</p>
   <p>（民事訴訟可並行）</p>
   <p style="margin-top:6px;">整理 by <a href="https://junhaoshihmd.blogspot.com/p/profile.html" target="_blank" style="color:rgba(255,255,255,0.7);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,0.6);">許君豪醫師</a> (via claude.ai)</p>
