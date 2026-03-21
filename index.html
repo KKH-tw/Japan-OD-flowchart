@@ -38,6 +38,7 @@
     color: var(--ink);
     line-height:1.7;
     min-height:100vh;
+    overflow-x: hidden;
   }
 
   /* ── HEADER ── */
@@ -121,8 +122,10 @@
   /* ── CONTAINER ── */
   .container {
     max-width:960px;
+    width:100%;
     margin:0 auto;
     padding:32px 20px 60px;
+    box-sizing:border-box;
   }
 
   /* ── SECTION TITLES ── */
@@ -192,6 +195,12 @@
     flex-direction: column;
     align-items: center;
     gap:0;
+    width:100%;
+    max-width:100%;
+  }
+  .flow-wrap > .branch-scroll-wrap {
+    width: 100%;
+    max-width: 620px;
   }
 
   /* ── NODE CARDS ── */
@@ -305,7 +314,7 @@
   /* ── BRANCH ── */
   .branch-wrap {
     width:100%;
-    max-width:620px;
+    max-width:100%;
     display: flex;
     gap:16px;
     margin:0;
@@ -380,10 +389,63 @@
     gap:10px;
     margin-top:6px;
   }
+  /* 滑動提示：預設隱藏，只在手機版顯示 */
+  .scroll-hint { display: none !important; }
+  @media (max-width:600px) {
+    .scroll-hint { display: block !important; }
+  }
+
+  /* 結果A/B、請求權A/B捲動包裝 */
+  .branch-scroll-wrap {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  /* 選擇A/B並排 */
+  .choice-wrap {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    width: 100%;
+    justify-content: center;
+  }
+  .choice-side {
+    flex: 0 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 手機版 */
   @media (max-width:600px) {
     .links-grid { grid-template-columns:1fr; }
     .branch-wrap { flex-direction: column; }
     .branch-divider { display: none; }
+    .choice-side { flex: 1; }
+    .branch-scroll-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .branch-scroll-wrap .branch-wrap {
+      flex-direction: row !important;
+    }
+    .branch-scroll-wrap .branch-divider {
+      display: block !important;
+    }
+    .branch-scroll-wrap .branch-side {
+      min-width: 90vw !important;
+      width: 90vw !important;
+    }
+  }
+
+  /* 電腦版：branch-side各佔一半，不捲動 */
+  @media (min-width:601px) {
+    .branch-scroll-wrap .branch-side {
+      flex: 1 !important;
+      min-width: 0 !important;
+      width: auto !important;
+    }
   }
   .link-card {
     background: var(--white);
@@ -539,7 +601,7 @@
     background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
     cursor: pointer;
   }
-  #view-simple .sp-wrap { max-width:780px; margin:0 auto; padding:28px 20px 52px; }
+  #view-simple .sp-wrap { max-width:780px; width:100%; margin:0 auto; padding:28px 20px 52px; box-sizing:border-box; }
   #view-simple .sec-label { display: flex; align-items: center; gap:10px; margin:30px 0 14px; }
   #view-simple .sec-num {
     background: #1a3a5c; color: #fff; font-size:13px; font-weight:500;
@@ -599,6 +661,28 @@
   }
   #view-simple .chip.blue { background: #2660a4; }
   #view-simple .chip.grey { background: #6b7280; }
+  /* arrow for simple view */
+  #view-simple .sp-flow {
+    display: flex; flex-direction: column; align-items: center; width:100%;
+  }
+  #view-simple .sp-arrow {
+    display: flex; flex-direction: column; align-items: center; padding:4px 0;
+  }
+  #view-simple .sp-arrow-line { width:2px; height:22px; background:#6b7280; }
+  #view-simple .sp-arrow-head {
+    width:0; height:0;
+    border-left:7px solid transparent; border-right:7px solid transparent;
+    border-top:10px solid #6b7280;
+  }
+  #view-simple .sp-arrow-label {
+    font-size:13px; color:#6b7280; background:#f0ede8;
+    padding:1px 8px; border-radius:10px; border:1px solid #d0d5dd; margin:2px 0;
+  }
+  #view-simple .sp-arrow.red .sp-arrow-line { background:#c0392b; }
+  #view-simple .sp-arrow.red .sp-arrow-head { border-top-color:#c0392b; }
+  #view-simple .sp-arrow.red .sp-arrow-label { color:#c0392b; border-color:#e8b4ae; }
+  #view-simple .sp-arrow.green .sp-arrow-line { background:#1a5c3a; }
+  #view-simple .sp-arrow.green .sp-arrow-head { border-top-color:#1a5c3a; }
   #view-simple .conn { display: flex; flex-direction: column; align-items: flex-start; padding:3px 0; margin-left: -27px; }
   #view-simple .conn-line { width:2px; height:14px; background: #6b7280; margin-left:9px; }
   #view-simple .conn-label {
@@ -816,8 +900,7 @@
       <div class="arrow-head"></div>
     </div>
 
-    <p style="font-size:14px;color:#666;margin:4px 0 4px;text-align:center;font-weight:500;">← 左右滑動查看結果 B →</p>
-    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><div class="branch-wrap" style="min-width:480px;">
+        <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
       <!-- 左：支給 -->
       <div class="branch-side">
         <div class="arrow green">
@@ -963,46 +1046,45 @@
       <div class="arrow-head"></div>
     </div>
 
-    <div class="branch-wrap" style="align-items:flex-start;">
-      <!-- 左：選擇A 再審査請求 -->
-      <div class="branch-side">
+
+    <!-- 選擇A、選擇B並排箭頭標籤 -->
+    <div class="choice-wrap">
+      <div class="choice-side">
         <div class="arrow red">
           <div class="arrow-label">選擇 A：提再審査請求（再訴願）</div>
           <div class="arrow-line"></div>
           <div class="arrow-head"></div>
         </div>
-        <!-- 第二層 -->
-        <div class="node node-blue" style="width:100%;">
-          <div class="node-title">再審査請求（再訴願） → 労働保険審査会（東京・厚生労働大臣管轄）</div>
-          <div class="node-body">
-            <span class="chip red">期限</span> 審查官決定翌日起 <strong>2 個月內</strong>（或 3 個月無決定後）<br>
-            <span class="chip blue">程序</span> 通常由 3 名委員組成合議體審理；特定情形擴大為 9 名全員合議<br>
-            <span class="chip">結果</span> 認容（准許）（撤銷）或棄却（駁回）
-          </div>
-          <div class="node-law">法源：<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_38" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労働保険審查法§38</a>（再審査請求期間）・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_39" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§39</a>（再審査請求方式）・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_26" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§26</a>（委員 9 名）・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_33" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§33</a>（合議體）</div>
-          <div class="node-law">👤 <strong>相關人員</strong>：<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_25" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労働保険審査会委員</a>（9 名合議）・<a href="https://laws.e-gov.go.jp/law/343AC1000000089#Mp-At_2" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">社会保険労務士（社勞士）</a>・<a href="https://laws.e-gov.go.jp/law/324AC1000000205#Mp-At_3" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">弁護士（律師）</a>（可代理）</div>
-          <div class="node-link">🔗 <a href="https://www.mhlw.go.jp/topics/bukyoku/shinsa/roudou/index.html" target="_blank" style="text-decoration:none;border-bottom:1px dotted currentColor;">労働保険審査会 公式頁</a></div>
-        </div>
+      </div>
+      <div style="width:1px;background:var(--border);flex-shrink:0;margin-top:12px;"></div>
+      <div class="choice-side">
         <div class="arrow red">
-          <div class="arrow-line"></div>
-          <div class="arrow-label">棄却（駁回）或 3 個月無裁決</div>
-          <div class="arrow-line"></div>
-          <div class="arrow-head"></div>
-        </div>
-        <div class="node node-grey" style="width:100%;">
-          <div class="node-tag">銜接步驟 ④</div>
-          <div class="node-title">→ 提起取消訴訟（撤銷訴訟）</div>
+          <div class="arrow-label">選擇 B：直接提行政訴訟（<a href="#section-4" style="color:var(--red);border-bottom:1px dotted var(--red);text-decoration:none;">步驟 ④</a>）</div>
         </div>
       </div>
+    </div>
 
-      <div class="branch-divider"></div>
-
-      <!-- 右：選擇B 小提示 -->
-      <div class="branch-side" style="flex:0 0 auto;width:130px;align-items:center;padding-top:8px;">
-        <div style="background:#f5e6e4;border:1.5px solid #e8b4ae;border-radius:6px;padding:10px 12px;font-size:14px;color:#c0392b;text-align:center;line-height:1.6;">
-          或：選擇 B<br>直接提起<br>行政訴訟<br><a href="#section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;font-weight:600;">步驟 ④</a>
-        </div>
+    <!-- 選擇A的後續框框：全寬 -->
+    <div class="node node-blue" style="width:100%;">
+      <div class="node-title">再審査請求（再訴願） → 労働保険審查会（東京・厚生労働大臣管轄）</div>
+      <div class="node-body">
+        <span class="chip red">期限</span> 審查官決定翌日起 <strong>2 個月內</strong>（或 3 個月無決定後）<br>
+        <span class="chip blue">程序</span> 通常由 3 名委員組成合議體審理；特定情形擴大為 9 名全員合議<br>
+        <span class="chip">結果</span> 認容（准許）（撤銷）或棄却（駁回）
       </div>
+      <div class="node-law">法源：<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_38" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労働保険審查法§38</a>（再審査請求期間）・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_39" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§39</a>（再審査請求方式）・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_26" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§26</a>（委員 9 名）・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_33" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§33</a>（合議體）</div>
+      <div class="node-law">👤 <strong>相關人員</strong>：<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_25" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労働保険審查会委員</a>（9 名合議）・<a href="https://laws.e-gov.go.jp/law/343AC1000000089#Mp-At_2" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">社会保険労務士（社勞士）</a>・<a href="https://laws.e-gov.go.jp/law/324AC1000000205#Mp-At_3" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">弁護士（律師）</a>（可代理）</div>
+      <div class="node-link">🔗 <a href="https://www.mhlw.go.jp/topics/bukyoku/shinsa/roudou/index.html" target="_blank" style="text-decoration:none;border-bottom:1px dotted currentColor;">労働保険審查会 公式頁</a></div>
+    </div>
+    <div class="arrow red">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">棄却（駁回）或 3 個月無裁決</div>
+      <div class="arrow-line"></div>
+      <div class="arrow-head"></div>
+    </div>
+    <div class="node node-grey" style="width:100%;">
+      <div class="node-tag">銜接步驟 ④</div>
+      <div class="node-title">→ 提起取消訴訟（撤銷訴訟）</div>
     </div>
 
   </div>
@@ -1085,8 +1167,7 @@
     </div>
 
     <!-- 兩種請求權 -->
-    <p style="font-size:14px;color:#666;margin:4px 0 4px;text-align:center;font-weight:500;">← 左右滑動查看請求權 B →</p>
-    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><div class="branch-wrap" style="min-width:480px;">
+        <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
       <div class="branch-side">
         <div class="node node-gold" style="width:100%;">
           <div class="node-tag">請求權 A</div>
@@ -1167,7 +1248,7 @@
     <h2>期限彙整一覽</h2>
   </div>
 
-  <p style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 左右滑動查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
+  <p class="scroll-hint" style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 向右滑動，查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
     <thead>
       <tr>
         <th>程序階段</th>
@@ -1305,7 +1386,7 @@
     <h2>主要法源依據</h2>
   </div>
 
-  <p style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 左右滑動查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
+  <p class="scroll-hint" style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 向右滑動，查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
     <thead>
       <tr>
         <th>法規</th>
@@ -1385,7 +1466,7 @@
     <h2>各流程參與者角色一覽</h2>
   </div>
 
-  <p style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 左右滑動查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
+  <p class="scroll-hint" style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 向右滑動，查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
     <thead>
       <tr>
         <th>身份</th>
@@ -1576,7 +1657,7 @@
   <div class="sp-desktop">
     <span class="sp-flag-emoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" style="width:1.4em;height:0.93em;vertical-align:-0.1em;margin-right:0.15em;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,0.3);"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/></svg></span>　<span class="sp-title-full">日本業務上疾病（職業病）流程圖（精簡版）</span>
   </div>
-  <p>① 申請 → ② 認定 → ③ 訴願 → ④ 行政訴訟</p>
+  <p>申請 → 調查認定 → 訴願 → 行政訴訟</p>
   <p>（民事訴訟可並行）</p>
   <p style="margin-top:6px;">整理 by <a href="https://junhaoshihmd.blogspot.com/p/profile.html" target="_blank" style="color:rgba(255,255,255,0.7);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,0.6);">許君豪醫師</a> (via claude.ai)</p>
   <p style="margin-top:4px;" id="copyright-line-simple"></p>
@@ -1595,51 +1676,58 @@
     <span class="sec-title">申請</span>
   </div>
 
-  <div class="tl">
-    <div class="tl-item">
-      <div class="card blue">
-        <div class="card-head">
-          <span class="card-title">勞工向管轄労働基準監督署提出保険給付請求</span>
-          <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_12_8" target="_blank">労災保険法§12の 8</a></span>
-        </div>
-        <div class="card-body">
-          ・由受災勞工或其遺族提出；雇主有協助義務，但勞工可單獨申請<br>
-          ・<span class="chip grey">時效</span> 療養・休業補償 <strong>2 年</strong>；障害・遺族補償 <strong>5 年</strong>（<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_42" target="_blank" style="color:#2660a4;border-bottom:1px dotted;text-decoration:none;">労災保険法§42</a>）
-        </div>
+  <div class="sp-flow">
+    <div class="card blue" style="width:100%;">
+      <div class="card-head">
+        <span class="card-title">勞工向管轄労働基準監督署提出保険給付請求</span>
+        <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_12_8" target="_blank">労災保険法§12の 8</a></span>
       </div>
+      <div class="card-body">
+        ・由受災勞工或其遺族提出；雇主有協助義務，但勞工可單獨申請<br>
+        ・<span class="chip grey">時效</span> 療養・休業補償 <strong>2 年</strong>；障害・遺族補償 <strong>5 年</strong>（<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_42" target="_blank" style="color:#2660a4;border-bottom:1px dotted;text-decoration:none;">労災保険法§42</a>）
+      </div>
+    </div>
+    <div class="sp-arrow">
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-head"></div>
     </div>
   </div>
 
-  <div class="sec-label" style="margin-top:24px;">
+  <div class="sec-label" style="margin-top:1.4em;">
     <div class="sec-num">②</div>
     <span class="sec-title">認定</span>
   </div>
 
-  <div class="tl">
-    <div class="tl-item">
-      <div class="card blue">
-        <div class="card-head">
-          <span class="card-title">監督署長實施調查・作出認定決定</span>
-          <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-At_99" target="_blank">労基法§99③</a>・<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_46" target="_blank">労災保険法§46</a>～<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_49" target="_blank">§49</a></span>
-        </div>
-        <div class="card-body">
-          監督官依職權調查業務起因性，由監督署長作出業務上／業務外認定決定
-        </div>
+  <div class="sp-flow">
+    <div class="card blue" style="width:100%;">
+      <div class="card-head">
+        <span class="card-title">監督署長實施調查・作出認定決定</span>
+        <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-At_99" target="_blank">労基法§99③</a>・<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_46" target="_blank">労災保険法§46</a>～<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_49" target="_blank">§49</a></span>
       </div>
+      <div class="card-body">監督官依職權調查業務起因性，由監督署長作出業務上／業務外認定決定</div>
     </div>
-    <div class="conn"><div class="conn-line"></div><div class="conn-label">✔ 業務上認定 → 給付</div><div class="conn-line"></div><div class="conn-label">✘ 業務外・不服 → 救濟程序</div><div class="conn-line"></div></div>
-    <div class="tl-item green">
-      <div class="card green">
-        <div class="card-head">
-          <span class="card-title">業務上認定 → 給付労災保険</span>
-          <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_12_8" target="_blank">労災保険法§12の 8</a></span>
-        </div>
-        <div class="card-body">療養補償・休業補償・障害補償・遺族補償・介護補償等</div>
+    <div class="sp-arrow green">
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-label">✔ 業務上認定 → 給付</div>
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-head"></div>
+    </div>
+    <div class="card green" style="width:100%;">
+      <div class="card-head">
+        <span class="card-title">業務上認定 → 給付労災保険</span>
+        <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_12_8" target="_blank">労災保険法§12の 8</a></span>
       </div>
+      <div class="card-body">療養補償・休業補償・障害補償・遺族補償・介護補償等</div>
+    </div>
+    <div class="sp-arrow red">
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-label">✘ 業務外・不服 → 救濟程序</div>
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-head"></div>
     </div>
   </div>
 
-  <div class="sec-label" style="margin-top:24px;">
+  <div class="sec-label" style="margin-top:1.4em;">
     <div class="sec-num">③</div>
     <span class="sec-title">行政救濟：審査請求・再審査請求（訴願）</span>
   </div>
@@ -1648,71 +1736,81 @@
     對不支給（不予給付）決定不服時，須先經審査請求（訴願）方可提起行政訴訟（<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_40" target="_blank" style="color:#2660a4;border-bottom:1px dotted;text-decoration:none;">労災保険法§40</a>）；再審査請求（再訴願）為選擇性，非強制前置。
   </div>
 
-  <div class="tl">
-    <div class="tl-item">
-      <div class="card blue">
-        <div class="card-head">
-          <span class="card-title">第一層：審査請求（訴願）→ 労働保険審査官</span>
-          <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_38" target="_blank">労災保険法§38①</a>・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_8" target="_blank">労審法§8</a></span>
+  <div class="sp-flow">
+    <div class="card blue" style="width:100%;">
+      <div class="card-head">
+        <span class="card-title">第一層：審査請求（訴願）→ 労働保険審査官</span>
+        <span class="card-law"><a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_38" target="_blank">労災保険法§38①</a>・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_8" target="_blank">労審法§8</a></span>
+      </div>
+      <div class="card-body"><span class="chip">期限</span> 知悉決定翌日起 <strong>3 個月內</strong></div>
+    </div>
+    <div class="sp-arrow red">
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-label">棄却（駁回）或 3 個月無決定 → 二選一</div>
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-head"></div>
+    </div>
+    <div class="choice-wrap" style="width:100%;">
+      <div class="choice-side">
+        <div class="sp-arrow red" style="width:100%;">
+          <div class="sp-arrow-label" style="width:100%;text-align:center;">選擇 A：提再審査請求</div>
+          <div class="sp-arrow-line"></div>
+          <div class="sp-arrow-head"></div>
         </div>
-        <div class="card-body"><span class="chip">期限</span> 知悉決定翌日起 <strong>3 個月內</strong></div>
+      </div>
+      <div class="choice-side">
+        <div class="sp-arrow red" style="width:100%;">
+          <div class="sp-arrow-label" style="width:100%;text-align:center;color:#c0392b;border-color:#e8b4ae;background:#f5e6e4;">選擇 B：直接提行政訴訟（<a href="#sp-section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;">步驟 ④</a>）</div>
+        </div>
       </div>
     </div>
-    <div class="conn"><div class="conn-line"></div><div class="conn-label">棄却（駁回）或 3 個月無決定 → 二選一</div><div class="conn-line"></div></div>
-    <div style="display:flex;gap:12px;padding-left:0;">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
-        <div class="conn-label" style="margin-bottom:6px;">選擇 A：提再審査請求</div>
-        <div class="card blue" style="width:100%;">
-          <div class="card-head">
-            <span class="card-title">第二層：再審査請求（再訴願）→ 労働保険審査会</span>
-            <span class="card-law"><a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_38" target="_blank">労審法§38</a>・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_39" target="_blank">§39</a></span>
-          </div>
-          <div class="card-body"><span class="chip">期限</span> 審查官決定翌日起 <strong>2 個月內</strong>（或 3 個月無決定後）</div>
-        </div>
+    <div class="card blue" style="width:100%;">
+      <div class="card-head">
+        <span class="card-title">第二層：再審査請求（再訴願）→ 労働保険審查会</span>
+        <span class="card-law"><a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_38" target="_blank">労審法§38</a>・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_39" target="_blank">§39</a></span>
       </div>
-      <div style="width:1px;background:#d0d5dd;margin-top:12px;flex-shrink:0;"></div>
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
-        <div class="conn-label" style="margin-bottom:6px;">選擇 B：直接提行政訴訟（<a href="#sp-section-4" style="color:inherit;border-bottom:1px dotted currentColor;text-decoration:none;">步驟 ④</a>）</div>
-      </div>
+      <div class="card-body"><span class="chip">期限</span> 審查官決定翌日起 <strong>2 個月內</strong>（或 3 個月無決定後）</div>
+    </div>
+    <div class="sp-arrow red">
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-label">棄却（駁回）或 3 個月無裁決</div>
+      <div class="sp-arrow-line"></div>
+      <div class="sp-arrow-head"></div>
     </div>
   </div>
 
-  <div class="sec-label" style="margin-top:24px;" id="sp-section-4">
+  <div class="sec-label" style="margin-top:1.4em;" id="sp-section-4">
     <div class="sec-num">④</div>
     <span class="sec-title">行政訴訟：取消訴訟（撤銷訴訟）</span>
   </div>
 
-  <div class="tl">
-    <div class="tl-item red">
-      <div class="card red">
-        <div class="card-head">
-          <span class="card-title">向地方裁判所提起取消訴訟（撤銷訴訟）</span>
-          <span class="card-law"><a href="https://laws.e-gov.go.jp/law/337AC0000000139#Mp-At_3" target="_blank">行訴法§3</a>・<a href="https://laws.e-gov.go.jp/law/337AC0000000139#Mp-At_14" target="_blank">§14</a></span>
-        </div>
-        <div class="card-body">
-          <span class="chip">期限</span> 知悉裁決翌日起 <strong>6 個月內</strong>（不變期間）・被告：國家<br>
-          不服地裁判決，依<a href="https://laws.e-gov.go.jp/law/337AC0000000139#Mp-At_7" target="_blank" style="color:#2660a4;border-bottom:1px dotted;text-decoration:none;">行訴法§7</a>準用民事訴訟法循序控訴・上告
-        </div>
+  <div class="sp-flow">
+    <div class="card red" style="width:100%;">
+      <div class="card-head">
+        <span class="card-title">向地方裁判所提起取消訴訟（撤銷訴訟）</span>
+        <span class="card-law"><a href="https://laws.e-gov.go.jp/law/337AC0000000139#Mp-At_3" target="_blank">行訴法§3</a>・<a href="https://laws.e-gov.go.jp/law/337AC0000000139#Mp-At_14" target="_blank">§14</a></span>
+      </div>
+      <div class="card-body">
+        <span class="chip">期限</span> 知悉裁決翌日起 <strong>6 個月內</strong>（不變期間）・被告：國家<br>
+        不服地裁判決，依<a href="https://laws.e-gov.go.jp/law/337AC0000000139#Mp-At_7" target="_blank" style="color:#2660a4;border-bottom:1px dotted;text-decoration:none;">行訴法§7</a>準用民事訴訟法循序控訴・上告
       </div>
     </div>
   </div>
 
-  <div class="sec-label" style="margin-top:24px;">
+  <div class="sec-label" style="margin-top:1.4em;">
     <div class="sec-num">§</div>
     <span class="sec-title">民事訴訟：對雇主請求損害賠償（可與①～④並行）</span>
   </div>
 
-  <div class="tl">
-    <div class="tl-item gold">
-      <div class="card gold">
-        <div class="card-head">
-          <span class="card-title">向地方裁判所提起民事損害賠償訴訟</span>
-          <span class="card-law"><a href="https://laws.e-gov.go.jp/law/419AC0000000128#Mp-At_5" target="_blank">労働契約法§5</a>・<a href="https://laws.e-gov.go.jp/law/129AC0000000089#Mp-At_415" target="_blank">民法§415</a>・<a href="https://laws.e-gov.go.jp/law/129AC0000000089#Mp-At_709" target="_blank">§709</a></span>
-        </div>
-        <div class="card-body">
-          被告：雇主。可請求慰謝料・逸失利益等労災保険未涵蓋部分（差額賠償）<br>
-          <span class="chip grey">時效</span> 安全配慮義務違反：知悉起 <strong>5 年</strong>／客觀上 <strong>10 年</strong>；不法行為：知悉起 <strong>3 年</strong>
-        </div>
+  <div class="sp-flow">
+    <div class="card gold" style="width:100%;">
+      <div class="card-head">
+        <span class="card-title">向地方裁判所提起民事損害賠償訴訟</span>
+        <span class="card-law"><a href="https://laws.e-gov.go.jp/law/419AC0000000128#Mp-At_5" target="_blank">労働契約法§5</a>・<a href="https://laws.e-gov.go.jp/law/129AC0000000089#Mp-At_415" target="_blank">民法§415</a>・<a href="https://laws.e-gov.go.jp/law/129AC0000000089#Mp-At_709" target="_blank">§709</a></span>
+      </div>
+      <div class="card-body">
+        被告：雇主。可請求慰謝料・逸失利益等労災保険未涵蓋部分（差額賠償）<br>
+        <span class="chip grey">時效</span> 安全配慮義務違反：知悉起 <strong>5 年</strong>／客觀上 <strong>10 年</strong>；不法行為：知悉起 <strong>3 年</strong>
       </div>
     </div>
   </div>
@@ -1722,7 +1820,7 @@
     <span class="sec-title">期限彙整</span>
   </div>
 
-  <p style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 左右滑動查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
+  <p class="scroll-hint" style="font-size:17px;color:#666;margin:0 0 4px;text-align:center;font-weight:500;position:sticky;left:0;">← 向右滑動，查看完整表格 →</p><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;"><table>
     <thead><tr><th>程序</th><th>期限</th><th>法源</th></tr></thead>
     <tbody>
       <tr><td>保険給付請求（療養・休業等）</td><td>時效 <strong>2 年</strong></td><td><a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_42" target="_blank">労災保険法§42</a></td></tr>
@@ -1779,5 +1877,33 @@ function toggleLang(id) {
 
 </script>
 
+
+<script>
+(function() {
+  function applyLayout() {
+    var isMobile = window.innerWidth <= 600;
+    // scroll hints
+    document.querySelectorAll('.scroll-hint').forEach(function(el) {
+      el.style.display = isMobile ? '' : 'none';
+    });
+    // 電腦版：讓branch-scroll-wrap與同層node等寬
+    if (!isMobile) {
+      document.querySelectorAll('.flow-wrap').forEach(function(fw) {
+        var node = fw.querySelector('.node');
+        var bsw = fw.querySelector('.branch-scroll-wrap');
+        if (node && bsw) {
+          bsw.style.width = node.offsetWidth + 'px';
+        }
+      });
+    } else {
+      document.querySelectorAll('.branch-scroll-wrap').forEach(function(bsw) {
+        bsw.style.width = '';
+      });
+    }
+  }
+  document.addEventListener('DOMContentLoaded', applyLayout);
+  window.addEventListener('resize', applyLayout);
+})();
+</script>
 </body>
 </html>
