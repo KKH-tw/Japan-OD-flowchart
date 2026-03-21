@@ -389,10 +389,10 @@
     gap:10px;
     margin-top:6px;
   }
-  /* 滑動提示：預設隱藏，只在手機版顯示 */
-  .scroll-hint { display: none !important; }
+  /* 滑動提示：只在手機版顯示 */
+  .scroll-hint { display: none; }
   @media (max-width:600px) {
-    .scroll-hint { display: block !important; }
+    .scroll-hint { display: block; }
   }
 
   /* 結果A/B、請求權A/B捲動包裝 */
@@ -900,7 +900,8 @@
       <div class="arrow-head"></div>
     </div>
 
-        <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
+<p class="scroll-hint" style="font-size:14px;color:#666;margin:4px 0;text-align:center;font-weight:500;">← 向右滑動，查看結果 B →</p>
+                <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
       <!-- 左：支給 -->
       <div class="branch-side">
         <div class="arrow green">
@@ -1167,7 +1168,8 @@
     </div>
 
     <!-- 兩種請求權 -->
-        <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
+<p class="scroll-hint" style="font-size:14px;color:#666;margin:4px 0;text-align:center;font-weight:500;">← 向右滑動，查看請求權 B →</p>
+                <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
       <div class="branch-side">
         <div class="node node-gold" style="width:100%;">
           <div class="node-tag">請求權 A</div>
@@ -1882,11 +1884,6 @@ function toggleLang(id) {
 (function() {
   function applyLayout() {
     var isMobile = window.innerWidth <= 600;
-    // scroll hints
-    document.querySelectorAll('.scroll-hint').forEach(function(el) {
-      el.style.display = isMobile ? '' : 'none';
-    });
-    // 電腦版：讓branch-scroll-wrap與同層node等寬
     if (!isMobile) {
       document.querySelectorAll('.flow-wrap').forEach(function(fw) {
         var node = fw.querySelector('.node');
@@ -1901,7 +1898,11 @@ function toggleLang(id) {
       });
     }
   }
-  document.addEventListener('DOMContentLoaded', applyLayout);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyLayout);
+  } else {
+    applyLayout();
+  }
   window.addEventListener('resize', applyLayout);
 })();
 </script>
