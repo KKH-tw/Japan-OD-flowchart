@@ -402,19 +402,24 @@
   }
 
   /* 選擇A/B並排 */
+  .choice-divider {
+    width: 1px;
+    background: var(--border);
+    flex-shrink: 0;
+    align-self: stretch;
+  }
   .choice-wrap {
-    display: flex;
-    flex-direction: row;
-    gap: 2%;
-    width: 100%;
-    justify-content: center;
+    display: inline-grid;
+    grid-template-columns: 1fr auto 1fr;
+    margin: 0 auto;
+    width: auto;
+    column-gap: 0;
   }
   .choice-side {
-    flex: 0 1 auto;
-    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 8px;
   }
 
   /* 手機版 */
@@ -422,7 +427,8 @@
     .links-grid { grid-template-columns:1fr; }
     .branch-wrap { flex-direction: column; }
     .branch-divider { display: none; }
-    .choice-side { flex: 1; }
+    .choice-wrap { display: flex; width: 100%; }
+    .choice-side { flex: 1; padding: 0 4px; }
     .branch-scroll-wrap {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -1057,7 +1063,7 @@
           <div class="arrow-head"></div>
         </div>
       </div>
-      <div style="width:1px;background:var(--border);flex-shrink:0;margin-top:12px;"></div>
+      <div class="choice-divider"></div>
       <div class="choice-side">
         <div class="arrow red">
           <div class="arrow-label">選擇 B：直接提行政訴訟（<a href="#section-4" style="color:var(--red);border-bottom:1px dotted var(--red);text-decoration:none;">步驟 ④</a>）</div>
@@ -1752,17 +1758,18 @@
       <div class="sp-arrow-line"></div>
       <div class="sp-arrow-head"></div>
     </div>
-    <div class="choice-wrap" style="width:100%;">
+    <div class="choice-wrap">
       <div class="choice-side">
-        <div class="sp-arrow red" style="width:100%;">
-          <div class="sp-arrow-label" style="width:100%;text-align:center;">選擇 A：提再審査請求</div>
+        <div class="sp-arrow red">
+          <div class="sp-arrow-label" style="text-align:center;">選擇 A：提再審査請求</div>
           <div class="sp-arrow-line"></div>
           <div class="sp-arrow-head"></div>
         </div>
       </div>
+      <div class="choice-divider"></div>
       <div class="choice-side">
-        <div class="sp-arrow red" style="width:100%;">
-          <div class="sp-arrow-label" style="width:100%;text-align:center;color:#c0392b;border-color:#e8b4ae;background:#f5e6e4;">選擇 B：直接提行政訴訟（<a href="#sp-section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;">步驟 ④</a>）</div>
+        <div class="sp-arrow red">
+          <div class="sp-arrow-label" style="text-align:center;color:#c0392b;border-color:#e8b4ae;background:#f5e6e4;">選擇 B：直接提行政訴訟（<a href="#sp-section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;">步驟 ④</a>）</div>
         </div>
       </div>
     </div>
