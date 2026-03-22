@@ -1,0 +1,12 @@
+# Copyright (c) 2026- KKH-tw. All rights reserved.
+
+### 繁體中文聲明：
+本專案（Japan-OD-flowchart）之所有內容（包含但不限於 HTML 原始碼、流程圖邏輯、文字說明及相關素材）之著作權皆歸作者（KKH-tw）所有。
+
+未經作者書面授權，禁止以任何形式進行以下行為：
+1. 重製、修改或轉載本專案之內容。
+2. 將本專案用於商業營利、教育收費課程或任何營利性質之活動。
+3. 移除或更改本專案中的著作權標誌或作者資訊。
+
+### English Notice:
+No permission is granted to copy, distribute, or modify any part of this project. You may view the source code for personal educational purposes only. For any other use, please contact the author.
