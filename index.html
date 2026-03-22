@@ -65,7 +65,7 @@
       rgba(255,255,255,0.03) 24px
     );
   }
-  header .flag { font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
+  header .flag { font-family: 'Noto Serif TC', 'Noto Sans JP', serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
   header h1 {
     font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
     font-size:29px;
@@ -314,11 +314,17 @@
   /* ── BRANCH ── */
   .branch-wrap {
     width:100%;
-    max-width:100%;
     display: flex;
+    flex-direction: row;
     gap:16px;
     margin:0;
   }
+  .branch-outer {
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    width:100%;
+  }
+
   .branch-side {
     flex:1;
     display: flex;
@@ -396,63 +402,57 @@
   }
 
   /* 結果A/B、請求權A/B捲動包裝 */
-  .branch-scroll-wrap {
+
+
+  /* 選擇A/B並排 */
+  .choice-wrap {
+    display: flex;
+    justify-content: center;
     width: 100%;
     max-width: 620px;
   }
-
-  /* 選擇A/B並排 */
+  .choice-wrap-inner {
+    display: table;
+    table-layout: fixed;
+    width: 28em;
+    border-collapse: collapse;
+  }
   .choice-divider {
+    display: table-cell;
     width: 1px;
     background: var(--border);
-    flex-shrink: 0;
-    align-self: stretch;
-  }
-  .choice-wrap {
-    display: inline-grid;
-    grid-template-columns: 1fr auto 1fr;
-    margin: 0 auto;
-    width: auto;
-    column-gap: 0;
+    padding: 0;
   }
   .choice-side {
-    display: flex;
+    display: table-cell;
+    text-align: center;
+    vertical-align: top;
+    padding: 0 8px;
+    width: 50%;
+  }
+  .choice-side > * {
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 8px;
+    width: 100%;
+  }
+  .choice-side .arrow-label,
+  .choice-side .sp-arrow-label {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
   }
 
   /* 手機版 */
   @media (max-width:600px) {
     .links-grid { grid-template-columns:1fr; }
-    .branch-wrap { flex-direction: column; }
-    .branch-divider { display: none; }
-    .choice-wrap { display: flex; width: 100%; }
-    .choice-side { flex: 1; padding: 0 4px; }
-    .branch-scroll-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .branch-scroll-wrap .branch-wrap {
-      flex-direction: row !important;
-    }
-    .branch-scroll-wrap .branch-divider {
-      display: block !important;
-    }
-    .branch-scroll-wrap .branch-side {
-      min-width: 90vw !important;
-      width: 90vw !important;
-    }
+    .choice-wrap { display: flex; width: 100%; justify-content: normal; }
+    .choice-wrap-inner { display: contents; }
+    .choice-side { display: flex; flex-direction: column; align-items: center; flex: 1; padding: 0 4px; min-width: 0; }
+    .choice-side > * { display: flex; }
   }
 
-  /* 電腦版：branch-side各佔一半，不捲動 */
-  @media (min-width:601px) {
-    .branch-scroll-wrap .branch-side {
-      flex: 1 !important;
-      min-width: 0 !important;
-      width: auto !important;
-    }
-  }
+
   .link-card {
     background: var(--white);
     border:1px solid var(--border);
@@ -570,7 +570,7 @@
     pointer-events: none;
     background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,0.03) 12px, rgba(255,255,255,0.03) 24px);
   }
-  #view-simple .sp-hdr .flag { font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
+  #view-simple .sp-hdr .flag { font-family: 'Noto Serif TC', 'Noto Sans JP', serif; font-size:28px; font-weight:700; letter-spacing:0.05em; margin-bottom:6px; color: #fff; }
   #view-simple .sp-hdr h1 {
     font-family: 'Noto Serif TC', 'Noto Sans JP', serif;
     font-size:29px; font-weight:700; letter-spacing:0.05em; margin-bottom:4px;
@@ -687,6 +687,9 @@
   #view-simple .sp-arrow.red .sp-arrow-line { background:#c0392b; }
   #view-simple .sp-arrow.red .sp-arrow-head { border-top-color:#c0392b; }
   #view-simple .sp-arrow.red .sp-arrow-label { color:#c0392b; border-color:#e8b4ae; }
+  @media (min-width:601px) {
+    .sp-label-nowrap { white-space: nowrap; }
+  }
   #view-simple .sp-arrow.green .sp-arrow-line { background:#1a5c3a; }
   #view-simple .sp-arrow.green .sp-arrow-head { border-top-color:#1a5c3a; }
   #view-simple .conn { display: flex; flex-direction: column; align-items: flex-start; padding:3px 0; margin-left: -27px; }
@@ -746,7 +749,7 @@
   <!-- ===== PHASE 1: APPLICATION ===== -->
   <div class="section-label">
     <div class="num">1</div>
-    <h2>申︀請︁階︁段︀：勞︁工︀向︁労︀働︁基︀準︁監︁督︁署︀提︁出︀請︀求︁</h2>
+    <h2>申請：勞工向労働基準監督署提出請求</h2>
   </div>
 
   <div class="law-box">
@@ -887,7 +890,7 @@
   <!-- ===== PHASE 2: DECISION ===== -->
   <div class="section-label">
     <div class="num">2</div>
-    <h2>認定階段：監督署長作出認定決定</h2>
+    <h2>認定：監督署長作出認定決定</h2>
   </div>
 
   <div class="flow-wrap">
@@ -907,9 +910,9 @@
     </div>
 
 <p class="scroll-hint" style="font-size:14px;color:#666;margin:4px 0;text-align:center;font-weight:500;">← 向右滑動，查看結果 B →</p>
-                <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
+                <div class="branch-outer"><div class="branch-wrap" style="flex-direction:row;align-items:flex-start;">
       <!-- 左：支給 -->
-      <div class="branch-side">
+      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
         <div class="arrow green">
           <div class="arrow-label">✔ 支給（給付）決定（業務上）</div>
           <div class="arrow-line"></div>
@@ -934,7 +937,7 @@
       <div class="branch-divider"></div>
 
       <!-- 右：不支給 -->
-      <div class="branch-side">
+      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
         <div class="arrow red">
           <div class="arrow-label">✘ 不支給（不予給付）決定（業務外）</div>
           <div class="arrow-line"></div>
@@ -1056,6 +1059,7 @@
 
     <!-- 選擇A、選擇B並排箭頭標籤 -->
     <div class="choice-wrap">
+      <div class="choice-wrap-inner">
       <div class="choice-side">
         <div class="arrow red">
           <div class="arrow-label">選擇 A：提再審査請求（再訴願）</div>
@@ -1068,6 +1072,7 @@
         <div class="arrow red">
           <div class="arrow-label">選擇 B：直接提行政訴訟（<a href="#section-4" style="color:var(--red);border-bottom:1px dotted var(--red);text-decoration:none;">步驟 ④</a>）</div>
         </div>
+      </div>
       </div>
     </div>
 
@@ -1175,8 +1180,8 @@
 
     <!-- 兩種請求權 -->
 <p class="scroll-hint" style="font-size:14px;color:#666;margin:4px 0;text-align:center;font-weight:500;">← 向右滑動，查看請求權 B →</p>
-                <div class="branch-scroll-wrap"><div class="branch-wrap" style="align-items:flex-start;">
-      <div class="branch-side">
+                <div class="branch-outer"><div class="branch-wrap" style="flex-direction:row;align-items:flex-start;">
+      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
         <div class="node node-gold" style="width:100%;">
           <div class="node-tag">請求權 A</div>
           <div class="node-title">債務不履行責任<br>（安全配慮義務違反）</div>
@@ -1190,7 +1195,7 @@
         </div>
       </div>
       <div class="branch-divider"></div>
-      <div class="branch-side">
+      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
         <div class="node node-gold" style="width:100%;">
           <div class="node-tag">請求權 B</div>
           <div class="node-title">不法行為責任<br>（＋使用者責任）</div>
@@ -1506,9 +1511,9 @@
         <td><strong>社会保険労務士（社勞士）</strong></td>
         <td>申請・審査請求・再審査請求・訴訟（輔佐）</td>
         <td>
-          ・<strong>申請階段</strong>：依<a href="https://laws.e-gov.go.jp/law/343AC1000000089#Mp-At_2" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">社労士法§2①一号</a>，可代理申請書作成・提出（弁護士亦可；非社勞士獨屬）<br>
-          ・<strong>審査請求・再審査請求階段</strong>：依同法§2①一号，可代理審査請求（訴願）・再審査請求（再訴願）程序<br>
-          ・<strong>訴訟階段</strong>：依<a href="https://laws.e-gov.go.jp/law/343AC1000000089#Mp-At_2_2" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">社労士法§2の 2</a>，僅得以輔佐人身份陪同弁護士出庭陳述；<strong>不得單獨代理訴訟</strong>
+          ・依<a href="https://laws.e-gov.go.jp/law/343AC1000000089#Mp-At_2" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">社労士法§2①一号</a>，可代理申請書作成・提出（弁護士亦可；非社勞士獨屬）<br>
+          ・依同法§2①一号，可代理審査請求（訴願）・再審査請求（再訴願）程序<br>
+          ・依<a href="https://laws.e-gov.go.jp/law/343AC1000000089#Mp-At_2_2" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">社労士法§2の 2</a>，僅得以輔佐人身份陪同弁護士出庭陳述；<strong>不得單獨代理訴訟</strong>
         </td>
         <td><a href="https://laws.e-gov.go.jp/law/343AC1000000089#Mp-At_2" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">社労士法§2①・§2の 2</a></td>
       </tr>
@@ -1518,9 +1523,9 @@
         <td><strong>弁護士（律師）</strong></td>
         <td>全程（申請階段較少介入）</td>
         <td>
-          ・<strong>申請階段</strong>：依<a href="https://laws.e-gov.go.jp/law/324AC1000000205#Mp-At_3" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">弁護士法§3</a>雖有一般代理權，但労災申請手續實務上通常由社勞士處理<br>
-          ・<strong>審査請求（訴願）以後</strong>：可代理審査請求・再審査請求，出席陳述<br>
-          ・<strong>訴訟階段</strong>：可代理取消訴訟（撤銷訴訟）或民事損害賠償訴訟；此階段實務上幾乎必要
+          ・依<a href="https://laws.e-gov.go.jp/law/324AC1000000205#Mp-At_3" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">弁護士法§3</a>雖有一般代理權，但労災申請手續實務上通常由社勞士處理<br>
+          ・可代理審査請求・再審査請求，出席陳述<br>
+          ・可代理取消訴訟（撤銷訴訟）或民事損害賠償訴訟；此階段實務上幾乎必要
         </td>
         <td><a href="https://laws.e-gov.go.jp/law/324AC1000000205#Mp-At_3" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">弁護士法§3</a></td>
       </tr>
@@ -1539,7 +1544,7 @@
       <!-- 監督署長 -->
       <tr>
         <td><strong>労働基準監督署長</strong></td>
-        <td>認定・給付階段</td>
+        <td>認定・給付</td>
         <td>接受保險給付請求、調查業務起因性後作出認定決定的行政主體；行政處分的名義人</td>
         <td><a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-At_99" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労基法§99③</a>（認定・審査等をつかさどる権限）・<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_46" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労災保険法§46</a>～<a href="https://laws.e-gov.go.jp/law/322AC0000000050#Mp-At_49" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§49</a>（調查権限）</td>
       </tr>
@@ -1547,7 +1552,7 @@
       <!-- 監督官 -->
       <tr>
         <td><strong>労働基準監督官</strong></td>
-        <td>認定階段</td>
+        <td>認定</td>
         <td>在監督署長指揮下執行業務起因性調查；依<a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-At_101" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労基法§101</a>進行立入検査、帳簿提出要求、尋問等；兼具司法警察員權限，可對違法雇主移送偵辦</td>
         <td><a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-At_101" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労基法§101</a>（立入検査・尋問）・<a href="https://laws.e-gov.go.jp/law/322AC0000000049#Mp-At_102" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">§102</a>（司法警察員権限）</td>
       </tr>
@@ -1555,7 +1560,7 @@
       <!-- 行政事務官 -->
       <tr>
         <td><strong>厚生労働事務官（行政事務官）</strong></td>
-        <td>認定・給付階段</td>
+        <td>認定・給付</td>
         <td>労基署労災課承辦人員，負責申請受理、給付事務等行政作業</td>
         <td>—</td>
       </tr>
@@ -1563,7 +1568,7 @@
       <!-- 地方労災医員 -->
       <tr>
         <td><strong>地方労災医員</strong></td>
-        <td>認定階段</td>
+        <td>認定</td>
         <td>由都道府縣労働局長依<a href="https://www.mhlw.go.jp/web/t_doc?dataId=00ta3751&dataType=1&pageNo=1" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労災医員規程§2</a>委嘱；就業務上疾病認定向監督署長提供醫學意見；高難度案件須與其他地方労災医員協議（<a href="https://www.mhlw.go.jp/web/t_doc?dataId=00ta3751&dataType=1&pageNo=1" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">同規程§3②</a>）</td>
         <td><a href="https://www.mhlw.go.jp/web/t_doc?dataId=00ta3751&dataType=1&pageNo=1" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労災医員規程§2・§3②</a></td>
       </tr>
@@ -1579,7 +1584,7 @@
       <!-- 労災協力医 -->
       <tr>
         <td><strong>労災協力医</strong></td>
-        <td>認定階段</td>
+        <td>認定</td>
         <td>由都道府縣労働局長委嘱；當地方労災医員中無相應專科醫師時，由監督署長委託提供醫學意見</td>
         <td><a href="https://www.soumu.go.jp/main_content/000665519.pdf" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">平成 8 年 3 月 29 日 基発第 176 号通達</a></td>
       </tr>
@@ -1595,7 +1600,7 @@
       <!-- 審査官 -->
       <tr>
         <td><strong>労働保険審査官</strong></td>
-        <td>審査請求（訴願）階段</td>
+        <td>審査請求（訴願）</td>
         <td>受理審査請求（訴願），隸屬都道府縣労働局，獨任制，獨立於監督署；依<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_15" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労審法§15</a>可命申請人接受指定醫師診斷</td>
         <td><a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_1" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労審法§1 以下</a></td>
       </tr>
@@ -1603,7 +1608,7 @@
       <!-- 審査会委員 -->
       <tr>
         <td><strong>労働保険審査会委員</strong></td>
-        <td>再審査請求（再訴願）階段</td>
+        <td>再審査請求（再訴願）</td>
         <td>受理再審査請求（再訴願）， 9 名委員合議制，隸屬厚生労働大臣</td>
         <td><a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_25" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労審法§25 以下</a></td>
       </tr>
@@ -1611,7 +1616,7 @@
       <!-- 関係代表 -->
       <tr>
         <td><strong>関係労働者・事業主代表</strong></td>
-        <td>審査請求・再審査請求階段</td>
+        <td>審査請求・再審査請求</td>
         <td>依<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_5" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労審法§5</a>由厚生労働大臣於各労働局指名，就審查案件表達意見</td>
         <td><a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_5" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">労審法§5</a></td>
       </tr>
@@ -1619,7 +1624,7 @@
       <!-- 裁判官 -->
       <tr>
         <td><strong>裁判官（法官）</strong></td>
-        <td>行政訴訟・民事訴訟階段</td>
+        <td>行政訴訟・民事訴訟</td>
         <td>地方裁判所・高等裁判所・最高裁判所審理</td>
         <td><a href="https://laws.e-gov.go.jp/law/337AC0000000139" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">行政事件訴訟法</a>・民事訴訟法</td>
       </tr>
@@ -1627,7 +1632,7 @@
       <!-- 鑑定人 -->
       <tr>
         <td><strong>鑑定人（專家證人）</strong></td>
-        <td>行政訴訟・民事訴訟階段</td>
+        <td>行政訴訟・民事訴訟</td>
         <td>法院委託就醫學因果關係或職場環境出具鑑定意見</td>
         <td><a href="https://laws.e-gov.go.jp/law/408AC0000000109#Mp-At_212" target="_blank" style="text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;">民事訴訟法§212 以下</a></td>
       </tr>
@@ -1680,7 +1685,7 @@
   </div>
 
   <div class="sec-label">
-    <div class="sec-num">①</div>
+    <div class="sec-num">1</div>
     <span class="sec-title">申請</span>
   </div>
 
@@ -1702,7 +1707,7 @@
   </div>
 
   <div class="sec-label" style="margin-top:1.4em;">
-    <div class="sec-num">②</div>
+    <div class="sec-num">2</div>
     <span class="sec-title">認定</span>
   </div>
 
@@ -1714,11 +1719,22 @@
       </div>
       <div class="card-body">監督官依職權調查業務起因性，由監督署長作出業務上／業務外認定決定</div>
     </div>
-    <div class="sp-arrow green">
-      <div class="sp-arrow-line"></div>
-      <div class="sp-arrow-label">✔ 業務上認定 → 給付</div>
-      <div class="sp-arrow-line"></div>
-      <div class="sp-arrow-head"></div>
+    <div class="choice-wrap">
+      <div class="choice-wrap-inner">
+        <div class="choice-side">
+          <div class="sp-arrow green">
+            <div class="sp-arrow-label" style="text-align:center;">✔ 業務上認定 → 給付</div>
+            <div class="sp-arrow-line"></div>
+            <div class="sp-arrow-head"></div>
+          </div>
+        </div>
+        <div class="choice-divider"></div>
+        <div class="choice-side">
+          <div class="sp-arrow red">
+            <div class="sp-arrow-label sp-label-nowrap" style="text-align:center;">✘ 業務外・不服 → 救濟程序（<a href="#sp-section-3" style="color:inherit;border-bottom:1px dotted currentColor;text-decoration:none;">步驟 ③</a>）</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="card green" style="width:100%;">
       <div class="card-head">
@@ -1727,16 +1743,10 @@
       </div>
       <div class="card-body">療養補償・休業補償・障害補償・遺族補償・介護補償等</div>
     </div>
-    <div class="sp-arrow red">
-      <div class="sp-arrow-line"></div>
-      <div class="sp-arrow-label">✘ 業務外・不服 → 救濟程序</div>
-      <div class="sp-arrow-line"></div>
-      <div class="sp-arrow-head"></div>
-    </div>
   </div>
 
-  <div class="sec-label" style="margin-top:1.4em;">
-    <div class="sec-num">③</div>
+  <div class="sec-label" style="margin-top:1.4em;" id="sp-section-3">
+    <div class="sec-num">3</div>
     <span class="sec-title">行政救濟：審査請求・再審査請求（訴願）</span>
   </div>
 
@@ -1759,21 +1769,23 @@
       <div class="sp-arrow-head"></div>
     </div>
     <div class="choice-wrap">
-      <div class="choice-side">
-        <div class="sp-arrow red">
-          <div class="sp-arrow-label" style="text-align:center;">選擇 A：提再審査請求</div>
-          <div class="sp-arrow-line"></div>
-          <div class="sp-arrow-head"></div>
+      <div class="choice-wrap-inner">
+        <div class="choice-side">
+          <div class="sp-arrow red">
+            <div class="sp-arrow-label" style="text-align:center;">選擇 A：提再審査請求</div>
+            <div class="sp-arrow-line"></div>
+            <div class="sp-arrow-head"></div>
+          </div>
         </div>
-      </div>
-      <div class="choice-divider"></div>
-      <div class="choice-side">
-        <div class="sp-arrow red">
-          <div class="sp-arrow-label" style="text-align:center;color:#c0392b;border-color:#e8b4ae;background:#f5e6e4;">選擇 B：直接提行政訴訟（<a href="#sp-section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;">步驟 ④</a>）</div>
+        <div class="choice-divider"></div>
+        <div class="choice-side">
+          <div class="sp-arrow red">
+            <div class="sp-arrow-label" style="text-align:center;color:#c0392b;border-color:#e8b4ae;background:#f5e6e4;">選擇 B：直接提行政訴訟（<a href="#sp-section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;">步驟 ④</a>）</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card blue" style="width:100%;">
+    <div class="card blue" style="width:100%;margin-top:6px;">
       <div class="card-head">
         <span class="card-title">第二層：再審査請求（再訴願）→ 労働保険審查会</span>
         <span class="card-law"><a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_38" target="_blank">労審法§38</a>・<a href="https://laws.e-gov.go.jp/law/331AC0000000126#Mp-At_39" target="_blank">§39</a></span>
@@ -1789,7 +1801,7 @@
   </div>
 
   <div class="sec-label" style="margin-top:1.4em;" id="sp-section-4">
-    <div class="sec-num">④</div>
+    <div class="sec-num">4</div>
     <span class="sec-title">行政訴訟：取消訴訟（撤銷訴訟）</span>
   </div>
 
@@ -1891,17 +1903,10 @@ function toggleLang(id) {
 (function() {
   function applyLayout() {
     var isMobile = window.innerWidth <= 600;
-    if (!isMobile) {
-      document.querySelectorAll('.flow-wrap').forEach(function(fw) {
-        var node = fw.querySelector('.node');
-        var bsw = fw.querySelector('.branch-scroll-wrap');
-        if (node && bsw) {
-          bsw.style.width = node.offsetWidth + 'px';
-        }
-      });
-    } else {
+    if (isMobile) {
       document.querySelectorAll('.branch-scroll-wrap').forEach(function(bsw) {
         bsw.style.width = '';
+        bsw.style.maxWidth = '';
       });
     }
   }
