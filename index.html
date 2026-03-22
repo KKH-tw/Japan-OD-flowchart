@@ -320,9 +320,18 @@
     margin:0;
   }
   .branch-outer {
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
     width:100%;
+  }
+  @media (max-width:600px) {
+    .branch-outer {
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .branch-outer .branch-side {
+      width: calc(100vw - 40px);
+      min-width: calc(100vw - 40px);
+      flex: none;
+    }
   }
 
   .branch-side {
@@ -404,6 +413,8 @@
   /* 結果A/B、請求權A/B捲動包裝 */
 
 
+  .mobile-br { display: none; }
+
   /* 選擇A/B並排 */
   .choice-wrap {
     display: flex;
@@ -446,6 +457,7 @@
   /* 手機版 */
   @media (max-width:600px) {
     .links-grid { grid-template-columns:1fr; }
+    .mobile-br { display: inline; }
     .choice-wrap { display: flex; width: 100%; justify-content: normal; }
     .choice-wrap-inner { display: contents; }
     .choice-side { display: flex; flex-direction: column; align-items: center; flex: 1; padding: 0 4px; min-width: 0; }
@@ -912,9 +924,9 @@
 <p class="scroll-hint" style="font-size:14px;color:#666;margin:4px 0;text-align:center;font-weight:500;">← 向右滑動，查看結果 B →</p>
                 <div class="branch-outer"><div class="branch-wrap" style="flex-direction:row;align-items:flex-start;">
       <!-- 左：支給 -->
-      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
+      <div class="branch-side">
         <div class="arrow green">
-          <div class="arrow-label">✔ 支給（給付）決定（業務上）</div>
+          <div class="arrow-label">✔ 業務上認定 → 給付</div>
           <div class="arrow-line"></div>
           <div class="arrow-head"></div>
         </div>
@@ -937,9 +949,9 @@
       <div class="branch-divider"></div>
 
       <!-- 右：不支給 -->
-      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
+      <div class="branch-side">
         <div class="arrow red">
-          <div class="arrow-label">✘ 不支給（不予給付）決定（業務外）</div>
+          <div class="arrow-label">✘ 業務外・不服 → 訴願<br class="mobile-br">（<a href="#section-3" style="color:inherit;border-bottom:1px dotted currentColor;text-decoration:none;">步驟 ③</a>）</div>
           <div class="arrow-line"></div>
           <div class="arrow-head"></div>
         </div>
@@ -1016,7 +1028,7 @@
   </div>
 
   <!-- ===== PHASE 3: APPEAL ===== -->
-  <div class="section-label">
+  <div class="section-label" id="section-3">
     <div class="num">3</div>
     <h2>訴願：審査請求・再審査請求（第一層・第二層）</h2>
   </div>
@@ -1062,7 +1074,7 @@
       <div class="choice-wrap-inner">
       <div class="choice-side">
         <div class="arrow red">
-          <div class="arrow-label">選擇 A：提再審査請求（再訴願）</div>
+          <div class="arrow-label">選擇 A：提再審査請求<br class="mobile-br">（再訴願）</div>
           <div class="arrow-line"></div>
           <div class="arrow-head"></div>
         </div>
@@ -1070,7 +1082,7 @@
       <div class="choice-divider"></div>
       <div class="choice-side">
         <div class="arrow red">
-          <div class="arrow-label">選擇 B：直接提行政訴訟（<a href="#section-4" style="color:var(--red);border-bottom:1px dotted var(--red);text-decoration:none;">步驟 ④</a>）</div>
+          <div class="arrow-label">選擇 B：直接提行政訴訟<br class="mobile-br">（<a href="#section-4" style="color:var(--red);border-bottom:1px dotted var(--red);text-decoration:none;">步驟 ④</a>）</div>
         </div>
       </div>
       </div>
@@ -1181,7 +1193,7 @@
     <!-- 兩種請求權 -->
 <p class="scroll-hint" style="font-size:14px;color:#666;margin:4px 0;text-align:center;font-weight:500;">← 向右滑動，查看請求權 B →</p>
                 <div class="branch-outer"><div class="branch-wrap" style="flex-direction:row;align-items:flex-start;">
-      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
+      <div class="branch-side">
         <div class="node node-gold" style="width:100%;">
           <div class="node-tag">請求權 A</div>
           <div class="node-title">債務不履行責任<br>（安全配慮義務違反）</div>
@@ -1195,7 +1207,7 @@
         </div>
       </div>
       <div class="branch-divider"></div>
-      <div class="branch-side" style="width:min(620px, calc(100vw - 40px));min-width:min(620px, calc(100vw - 40px));">
+      <div class="branch-side">
         <div class="node node-gold" style="width:100%;">
           <div class="node-tag">請求權 B</div>
           <div class="node-title">不法行為責任<br>（＋使用者責任）</div>
@@ -1731,7 +1743,7 @@
         <div class="choice-divider"></div>
         <div class="choice-side">
           <div class="sp-arrow red">
-            <div class="sp-arrow-label sp-label-nowrap" style="text-align:center;">✘ 業務外・不服 → 救濟程序（<a href="#sp-section-3" style="color:inherit;border-bottom:1px dotted currentColor;text-decoration:none;">步驟 ③</a>）</div>
+            <div class="sp-arrow-label sp-label-nowrap" style="text-align:center;">✘ 業務外・不服 → 訴願<br class="mobile-br">（<a href="#sp-section-3" style="color:inherit;border-bottom:1px dotted currentColor;text-decoration:none;">步驟 ③</a>）</div>
           </div>
         </div>
       </div>
@@ -1772,7 +1784,7 @@
       <div class="choice-wrap-inner">
         <div class="choice-side">
           <div class="sp-arrow red">
-            <div class="sp-arrow-label" style="text-align:center;">選擇 A：提再審査請求</div>
+            <div class="sp-arrow-label" style="text-align:center;">選擇 A：提再審査請求<br class="mobile-br">（再訴願）</div>
             <div class="sp-arrow-line"></div>
             <div class="sp-arrow-head"></div>
           </div>
@@ -1780,7 +1792,7 @@
         <div class="choice-divider"></div>
         <div class="choice-side">
           <div class="sp-arrow red">
-            <div class="sp-arrow-label" style="text-align:center;color:#c0392b;border-color:#e8b4ae;background:#f5e6e4;">選擇 B：直接提行政訴訟（<a href="#sp-section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;">步驟 ④</a>）</div>
+            <div class="sp-arrow-label" style="text-align:center;color:#c0392b;border-color:#e8b4ae;background:#f5e6e4;">選擇 B：直接提行政訴訟<br class="mobile-br">（<a href="#sp-section-4" style="color:#c0392b;border-bottom:1px dotted #c0392b;text-decoration:none;">步驟 ④</a>）</div>
           </div>
         </div>
       </div>
@@ -1864,7 +1876,7 @@
 </div>
 
 <div id="main-footer" style="text-align:center;padding:24px 20px 32px;font-size:14px;color:#888;border-top:1px solid #ddd;margin-top:8px;">
-  <span id="footer-copyright"></span>　著作權所有，未經授權請勿轉載。
+  <span id="footer-copyright"></span>　著作權所有，未經授權請勿轉載。整︁理︀ by <a href="https://junhaoshihmd.blogspot.com/p/profile.html" target="_blank" style="color:#888;text-decoration:none;border-bottom:1px dotted #bbb;">許︀君︀豪︁醫︀師︁</a> (via claude.ai)
 </div>
 
 <script>
