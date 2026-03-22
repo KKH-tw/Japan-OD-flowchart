@@ -1863,6 +1863,10 @@
 
 </div>
 
+<div id="main-footer" style="text-align:center;padding:24px 20px 32px;font-size:14px;color:#888;border-top:1px solid #ddd;margin-top:8px;">
+  <span id="footer-copyright"></span>　著作權所有，未經授權請勿轉載。
+</div>
+
 <script>
 
 (function() {
@@ -1872,6 +1876,8 @@
   ['copyright-line-full','copyright-line-simple'].forEach(function(id){
     var el = document.getElementById(id); if(el) el.textContent = copy;
   });
+  var fc = document.getElementById('footer-copyright');
+  if(fc) fc.textContent = '\u00a9 ' + yr + '. All rights reserved.';
   var ud = document.getElementById('update-date');
   if(ud) ud.textContent = y + ' \u5e74 ' + m + ' \u6708';
 })();
